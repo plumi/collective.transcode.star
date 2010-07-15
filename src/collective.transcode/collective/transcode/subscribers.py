@@ -30,9 +30,9 @@ def editFile(obj, event):
         newTypes = [t.split(':')[0] for t in types]
         if unicode(obj.portal_type) not in newTypes:
             return
-	fieldNames = [str(t.split(':')[1]) for t in types if ('%s:' % unicode(obj.portal_type)) in t]
-	tt = getUtility(ITranscodeTool)
+        fieldNames = [str(t.split(':')[1]) for t in types if ('%s:' % unicode(obj.portal_type)) in t]
+        tt = getUtility(ITranscodeTool)
         tt.add(obj, fieldNames)
     except Exception, e:
-	log.error("Could not transcode resource %s\n Exception: %s" % (obj.absolute_url(), e))
+        log.error("Could not transcode resource %s\n Exception: %s" % (obj.absolute_url(), e))
 

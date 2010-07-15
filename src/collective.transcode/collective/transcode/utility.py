@@ -21,18 +21,18 @@ log = logging.getLogger('collective.transcode')
 
 class TranscodeTool(BTreeContainer):
     grok.provides(ITranscodeTool)
-	
+
     def add(self, obj, fieldNames = [], force = False):
         """
            Add a portal object to the transcode queue
         """
 
-	UID = obj.UID()
+        UID = obj.UID()
         # If no fieldNames have been defined as transcodable, then use the primary field
         # TODO: check if they are actually file fields
         if not fieldNames:
             fields = [obj.getPrimaryField()]
-	else:
+        else:
             fields = [obj.getField(f) for f in fieldNames]
 
         # If file is empty then do nothing
@@ -40,8 +40,8 @@ class TranscodeTool(BTreeContainer):
         if not fileSize:
             return
         try:
-	    address = self.getNextDaemon()
-	except Exception, e:
+            address = self.getNextDaemon()
+        except Exception, e:
             log.error(u"Can't get daemon address %s" % e)
             return
 
@@ -52,19 +52,19 @@ class TranscodeTool(BTreeContainer):
             log.error(u"Could not connect to transcode daemon %s: %s" % (address, e))
             return
 
-	profiles = self.getProfiles()
+        profiles = self.getProfiles()
         secret = self.secret()
 
-	for profile in profiles:
-	    if profile not in daemonProfiles:
-		log.warn(u"profile %s not supported by the transcode daemon at %s" % (profile, address))
-	    	continue
+        for profile in profiles:
+            if profile not in daemonProfiles:
+                log.warn(u"profile %s not supported by the transcode daemon at %s" % (profile, address))
+                continue
             for field in fields:
                 fieldName = field.getName()
                 if field.getContentType(obj) not in self.supported_mime_types():
                     continue
                 data = StringIO(field.get(obj).data)
-	        md5sum = md5(data.read()).hexdigest()
+                md5sum = md5(data.read()).hexdigest()
                 # Check if there is already a transcode request pending for the given field and profile
                 if self.is_pending(UID, fieldName, profile, md5sum):
                     log.info(u'transcode request already pending for %s:%s:%s:%s' % (UID, fieldName, profile,md5sum))
@@ -93,9 +93,9 @@ class TranscodeTool(BTreeContainer):
                         }
 
                 # Transcode request about to be sent. Write it down in the TranscodeTool
-	        objRec = self.get(UID, None)
+                objRec = self.get(UID, None)
                 if not objRec:
-		    self[UID] = PersistentDict()
+                    self[UID] = PersistentDict()
                 else:
                     log.info(u"object at %s already exists in TranscodeTool" % obj.absolute_url())
 
@@ -121,9 +121,9 @@ class TranscodeTool(BTreeContainer):
         return
    
     def getNextDaemon(self):
-	""" 
-	   Select the daemon with the minimun queueSize
-	"""
+        """
+           Select the daemon with the minimun queueSize
+        """
         registry = getUtility(IRegistry)
         daemons = registry['collective.transcode.interfaces.ITranscodeSettings.daemon_address']
         if len(daemons) == 0:
@@ -150,12 +150,12 @@ class TranscodeTool(BTreeContainer):
             if min[0] == -1 or queueSize < min[0]:
                 min = (queueSize, d)
         return min[1]
-	
+
     def getProfiles(self):
-	"""
-	   Return the list of supported profiles from the registry
-	"""
-	registry = getUtility(IRegistry)
+        """
+          Return the list of supported profiles from the registry
+        """
+        registry = getUtility(IRegistry)
         return registry['collective.transcode.interfaces.ITranscodeSettings.transcode_profiles']
 
     def secret(self):
@@ -214,7 +214,7 @@ class TranscodeTool(BTreeContainer):
             obj.reindexObject(idxs=['object_provides'])
         except Exception, e:
             pass
-	return	 
+        return
 
     def errback(self, result):
         log.info(u"%s errback for %s" % (result['profile'], result['UID']))

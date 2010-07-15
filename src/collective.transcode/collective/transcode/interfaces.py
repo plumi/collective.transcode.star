@@ -34,23 +34,23 @@ class ITranscodeSettings(Interface):
 
 class ITranscodeTool(Interface):
     """
-	TranscodeTool interface
+    TranscodeTool interface
     """
 
     def add(self, obj):
-	"""
-	    add object to transcoding queue if not already there
+        """
+        add object to transcoding queue if not already there
         """
 
     def callback(self, context, request):
         """
-	    handle callbacks
-	"""
+        handle callbacks
+        """
 
     def errback(self, context, request):
         """
-	    handle errbacks
-	"""
+        handle errbacks
+        """
 
 class ICallbackView(Interface):
     """

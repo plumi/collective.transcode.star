@@ -1,3 +1,4 @@
+AUTHORS.txt
 README.txt
 setup.cfg
 setup.py
@@ -19,6 +20,8 @@ collective/transcode/interfaces.py
 collective/transcode/subscribers.py
 collective/transcode/tests.py
 collective/transcode/utility.py
+collective/transcode/viewlet.pt
+collective/transcode/viewlets.py
 collective/transcode/views.py
 collective/transcode/profiles/default/componentregistry.xml
 collective/transcode/profiles/default/controlpanel.xml
