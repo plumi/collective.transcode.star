@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.1'
+version = '0.2'
 
 setup(name='collective.transcode',
       version=version,
@@ -20,7 +20,7 @@ setup(name='collective.transcode',
       author_email='we@unweb.me',
       url='https://svn.plone.org/svn/collective/collective.transcode',
       license='GPL',
-      packages=find_packages(exclude=['ez_setup']),
+      packages=find_packages('src/collective.transcode',exclude=['ez_setup']),
       namespace_packages=['collective'],
       include_package_data=True,
       zip_safe=False,
