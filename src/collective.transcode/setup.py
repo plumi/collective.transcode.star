@@ -30,6 +30,7 @@ setup(name='collective.transcode',
           'plone.app.registry',
           'pycrypto',
           'collective.flowplayer',
+          'hashlib'
       ],
       entry_points="""
       # -*- Entry points: -*-

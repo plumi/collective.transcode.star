@@ -1,4 +1,3 @@
-from five import grok
 from collective.transcode.interfaces import ITranscodeTool, ITranscoded
 from hashlib import md5
 from zope.app.container.btree import BTreeContainer
@@ -16,11 +15,14 @@ from base64 import b64encode
 import transaction
 from zope.interface import alsoProvides, noLongerProvides
 from StringIO import StringIO
+from zope.interface import implements
+from zope.component import getSiteManager
 
 log = logging.getLogger('collective.transcode')
 
 class TranscodeTool(BTreeContainer):
-    grok.provides(ITranscodeTool)
+    
+    implements(ITranscodeTool)
 
     def add(self, obj, fieldNames = [], force = False):
         """
@@ -231,7 +233,8 @@ class TranscodeTool(BTreeContainer):
         """
            Validate the result of callbacks and errbacks
         """
-        uid_catalog = getToolByName(self.__parent__, 'uid_catalog')
+        portal = getSiteManager()
+        uid_catalog = getToolByName(portal, 'uid_catalog')
         try:
             obj = uid_catalog(UID=result['UID'])[0].getObject()
         except Exception, e:
