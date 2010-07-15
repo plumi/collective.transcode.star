@@ -1,0 +1,4 @@
+setuptools
+plone.app.registry
+pycrypto
+collective.flowplayer

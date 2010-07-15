@@ -1,0 +1,24 @@
+Metadata-Version: 1.0
+Name: collective.transcode
+Version: 0.1
+Summary: Transcoding support for Plone video files, using collective.transcode.daemon
+Home-page: https://svn.plone.org/svn/collective/collective.transcode
+Author: https://unweb.me
+Author-email: we@unweb.me
+License: GPL
+Description: Introduction
+        ============
+        
+        
+        
+        Changelog
+        =========
+        
+        0.1dev (unreleased)
+        -------------------
+        
+        - Initial release
+        
+Platform: UNKNOWN
+Classifier: Framework :: Plone
+Classifier: Programming Language :: Python

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<componentregistry>
+  <utilities>
+    <utility
+      interface="collective.transcode.interfaces.ITranscodeTool"
+      factory="collective.transcode.utility.TranscodeTool"
+    />
+  </utilities>
+</componentregistry>
+

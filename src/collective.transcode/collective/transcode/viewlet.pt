@@ -1,0 +1,5 @@
+<div tal:define="mp4path view/mp4/path|nothing" tal:attributes="class python:mp4path and 'autoFlowPlayer' or ''">
+<a tal:omit-tag="not: mp4path" tal:attributes="href string:${view/mp4/address|nothing}/${view/mp4/path|nothing}">
+<img tal:attributes="src string:${view/jpeg/address|nothing}/${view/jpeg/path|nothing}" tal:condition="not: mp4path" />
+</a>
+</div>
