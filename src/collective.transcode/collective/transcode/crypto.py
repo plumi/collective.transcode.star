@@ -1,8 +1,12 @@
+"""Module for encrypting messages between collective.transcode and
+collective.transcode.daemon
+"""
 import zlib
 import struct
 from Crypto.Cipher import AES
 
 class CheckSumError(Exception):
+    """checksum mismatch"""
     pass
 
 def _lazysecret(secret, blocksize=32, padding='}'):
@@ -19,7 +23,6 @@ def encrypt(plaintext, secret, lazy=True, checksum=True):
     checksum    - attach crc32 byte encoded (default: True)
     returns ciphertext
     """
-
     if lazy:
         secret = _lazysecret(secret) 
 
@@ -38,7 +41,6 @@ def decrypt(ciphertext, secret, lazy=True, checksum=True):
     checksum    - verify crc32 byte encoded checksum (default: True)
     returns plaintext
     """
-
     if lazy:
         secret = _lazysecret(secret)
     encobj = AES.new(secret, AES.MODE_CFB)
