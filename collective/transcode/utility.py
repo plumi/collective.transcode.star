@@ -17,6 +17,7 @@ from zope.interface import alsoProvides, noLongerProvides
 from StringIO import StringIO
 from zope.interface import implements
 from zope.component import getSiteManager
+import urllib
 
 log = logging.getLogger('collective.transcode')
 
@@ -83,7 +84,7 @@ class TranscodeTool(BTreeContainer):
                 # TODO securely serve files under serve_daemon view
                 fileUrl = portal_url + '/@@serve_daemon'
                 fileType = field.getContentType(obj)
-                fileName = field.getFilename(obj)
+                fileName = urllib.pathname2url(field.getFilename(obj))
                 options = dict()
                 input = {
                           'path' : filePath,
