@@ -3,7 +3,7 @@ import os
 
 version = '0.2'
 name = 'collective.transcode'
-path = ['src'] + [name] + name.split('.') + ['version.txt']
+path = name.split('.') + ['version.txt']
 version = open('/'.join(path)).read().strip()
 readme = open('README.txt').read()
 history = open('/'.join(['docs', 'HISTORY.txt'])).read()
@@ -16,17 +16,25 @@ setup(name=name,
       long_description = readme[readme.find('\n\n'):] + '\n' + history,
       # Get more strings from
       # http://pypi.python.org/pypi?%3Aaction=list_classifiers
-      classifiers=[
-        "Framework :: Plone",
-        "Programming Language :: Python",
-        ],
+      classifiers = [
+        'Development Status :: 4 - Beta',
+        'Environment :: Web Environment',
+        'Framework :: Plone',
+        'Intended Audience :: Developers',
+        'Intended Audience :: System Administrators',
+        'Intended Audience :: Other Audience',
+        'License :: OSI Approved :: GNU General Public License (GPL)',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+      ],
       keywords='video transcoding plone ffmpeg mp4 ogg',
       author='https://unweb.me',
       author_email='we@unweb.me',
       url='https://svn.plone.org/svn/collective/collective.transcode',
       license='GPL',
-      package_dir = {'': 'src/collective.transcode'},
-      packages=find_packages('src/collective.transcode/'),
+      package_dir = {'': ''},
+      packages=find_packages(''),
       namespace_packages=['collective'],
       include_package_data=True,
       zip_safe=False,
