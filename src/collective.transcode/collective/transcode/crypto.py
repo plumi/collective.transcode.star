@@ -3,6 +3,7 @@ collective.transcode.daemon
 """
 import zlib
 import struct
+
 from Crypto.Cipher import AES
 
 class CheckSumError(Exception):
