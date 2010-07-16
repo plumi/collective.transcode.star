@@ -1,13 +1,12 @@
 Metadata-Version: 1.0
 Name: collective.transcode
-Version: 0.1
+Version: 0.2
 Summary: Transcoding support for Plone video files, using collective.transcode.daemon
 Home-page: https://svn.plone.org/svn/collective/collective.transcode
 Author: https://unweb.me
 Author-email: we@unweb.me
 License: GPL
-Description: Introduction
-        ============
+Description: 
         
         collective.transcode is a Plone product that offers transcoding services
         for Archetypes content. It works out of the box with standard Plone Files,
@@ -35,14 +34,6 @@ Description: Introduction
         -------------------
         
         - Initial release
-        
-        AUTHORS
-        -------
-        Dimitris Moraitis <dimo@unweb.me>
-        Chris Psaltis <cpsaltis@unweb.me>
-        Markos Gogoulos <mgogoulos@unweb.me>
-        Mike Muzurakis <clopy@unweb.me>
-        
         
 Keywords: video transcoding plone ffmpeg mp4 ogg
 Platform: UNKNOWN
