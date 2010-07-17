@@ -1,4 +1,4 @@
-from collective.transcode.interfaces import ITranscodeTool, ITranscoded
+from collective.transcode.interfaces import ITranscodeTool, ITranscoded, ITranscodedEvent
 from hashlib import md5
 from zope.app.container.btree import BTreeContainer
 import xmlrpclib
@@ -17,7 +17,8 @@ from zope.interface import alsoProvides, noLongerProvides
 from StringIO import StringIO
 from zope.interface import implements
 from zope.component import getSiteManager
-import urllib
+from zope.component.interfaces import ObjectEvent
+from zope.event import notify
 
 log = logging.getLogger('collective.transcode')
 
@@ -213,6 +214,7 @@ class TranscodeTool(BTreeContainer):
         entry['end'] = datetime.now()
         entry['status'] = 'ok'
         alsoProvides(obj, ITranscoded)
+        notify(TranscodedEvent(obj, result['profile']))
         try:
             obj.reindexObject(idxs=['object_provides'])
         except Exception, e:
@@ -257,3 +259,12 @@ class TranscodeTool(BTreeContainer):
             return (obj, False)
 
         return (obj, entry)
+
+
+class TranscodedEvent(ObjectEvent):
+
+    implements(ITranscodedEvent)
+
+    def __init__(self, object, profile):
+        self.object = object
+        self.profile = profile

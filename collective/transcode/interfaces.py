@@ -1,6 +1,10 @@
 """The product's interfaces"""
 from zope import schema
 from zope.interface import Interface
+from zope.component.interfaces import IObjectEvent
+
+class ITranscodedEvent(IObjectEvent):
+    profile = schema.TextLine(title = u"Transcode profile")
 
 
 #TODO: add help messages
