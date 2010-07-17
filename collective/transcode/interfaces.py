@@ -6,31 +6,32 @@ from zope.interface import Interface
 #TODO: add help messages
 class ITranscodeSettings(Interface):
     """Transcoding settings"""
-    daemon_address = schema.Tuple(title = u"Daemon address", 
-                                  value_type = schema.TextLine(title = u"address"),
-                                  default = (u"http://localhost:8888",),
+    daemon_address = schema.Tuple(title = u'Daemon address', 
+                                  value_type = schema.TextLine(title = u'address'),
+                                  default = (u'http://localhost:8888',),
                                   )
 
-    transcode_profiles = schema.Tuple(title = u"Transcode profiles", 
-                                      value_type = schema.TextLine(title = u""),
-                                      default = (u"jpeg", u"mp4", u"ogg",)
+    transcode_profiles = schema.Tuple(title = u'Transcode profiles', 
+                                      value_type = schema.TextLine(title = u''),
+                                      default = (u'jpeg', u'mp4', u'ogg',),
                                       )
 
-    portal_types = schema.Tuple(title = u"Portal types to transcode", 
-                                value_type = schema.TextLine(title = u""),
-                                default = (u"File",)
+    portal_types = schema.Tuple(title = u'Portal types to transcode', 
+                                value_type = schema.TextLine(title = u''),
+                                default = (u'File',),
                                 )
 
-    mime_types = schema.Tuple(title = u"Supported mime types",
-                              value_type = schema.TextLine(title = u""),
+    mime_types = schema.Tuple(title = u'Supported mime types',
+                              value_type = schema.TextLine(title = u''),
                               default = (u'video/mpeg', u'video/3gpp', u'video/x-ms-wmv', 
                                          u'video/ogg', u'video/x-ogg', u'video/x-ogm+ogg', 
                                          u'video/mpeg', u'video/quicktime', u'video/x-la-asf', 
                                          u'video/x-ms-asf', u'video/x-msvideo',),
                               )
 
-    secret = schema.TextLine(title = u"Shared secret with transcode daemon(s)",
-                             default = u'1771d99931264d538e75eeb19da7d6a0')
+    secret = schema.TextLine(title = u'Shared secret with transcode daemon(s)',
+                             default = u'1771d99931264d538e75eeb19da7d6a0',
+                            )
 
 
 class ITranscodeTool(Interface):
