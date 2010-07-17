@@ -1,12 +1,16 @@
-from Products.CMFCore.interfaces._content import IContentish
-from zope.lifecycleevent.interfaces import IObjectModifiedEvent, IObjectCreatedEvent
+"""Event subscribers"""
 import logging
+
 from zope.component import adapter
 from zope.component import getUtility
-from plone.registry.interfaces import IRegistry
-from collective.transcode.interfaces import ITranscodeTool
 from zope.component import getSiteManager
 from zope.interface.interfaces import IInterface
+from zope.lifecycleevent.interfaces import IObjectModifiedEvent 
+from zope.lifecycleevent.interfaces import IObjectCreatedEvent
+from plone.registry.interfaces import IRegistry
+from Products.CMFCore.interfaces._content import IContentish
+
+from collective.transcode.interfaces import ITranscodeTool
 
 log = logging.getLogger('collective.transcode')
 
