@@ -6,8 +6,12 @@ from zope.component import getUtility
 from zope.component import getSiteManager
 from zope.interface.interfaces import IInterface
 from zope.component.interfaces import ObjectEvent
-
+from Products.CMFCore.interfaces import IContentish
 from collective.transcode.interfaces import ITranscodeTool
+from zope.lifecycleevent.interfaces import IObjectModifiedEvent  
+from zope.lifecycleevent.interfaces import IObjectCreatedEvent 
+from plone.registry.interfaces import IRegistry 
+from Products.CMFCore.interfaces._content import IContentish 
 
 log = logging.getLogger('collective.transcode')
 
