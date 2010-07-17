@@ -12,17 +12,17 @@ class ITranscodeSettings(Interface):
                                   )
 
     transcode_profiles = schema.Tuple(title = u"Transcode profiles", 
-                                      value_type = schema.TextLine(title = u"address"),
+                                      value_type = schema.TextLine(title = u""),
                                       default = (u"jpeg", u"mp4", u"ogg",)
                                       )
 
     portal_types = schema.Tuple(title = u"Portal types to transcode", 
-                                value_type = schema.TextLine(title = u"address"),
+                                value_type = schema.TextLine(title = u""),
                                 default = (u"File",)
                                 )
 
     mime_types = schema.Tuple(title = u"Supported mime types",
-                              value_type = schema.TextLine(title = u"mime-type"),
+                              value_type = schema.TextLine(title = u""),
                               default = (u'video/mpeg', u'video/3gpp', u'video/x-ms-wmv', 
                                          u'video/ogg', u'video/x-ogg', u'video/x-ogm+ogg', 
                                          u'video/mpeg', u'video/quicktime', u'video/x-la-asf', 
