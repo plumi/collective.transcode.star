@@ -84,7 +84,7 @@ class TranscodeTool(BTreeContainer):
                 # TODO securely serve files under serve_daemon view
                 fileUrl = portal_url + '/@@serve_daemon'
                 fileType = field.getContentType(obj)
-                fileName = urllib.pathname2url(field.getFilename(obj))
+                fileName = field.getFilename(obj)
                 options = dict()
                 input = {
                           'path' : filePath,
