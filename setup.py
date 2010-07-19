@@ -7,7 +7,6 @@ path = name.split('.') + ['version.txt']
 version = open('/'.join(path)).read().strip()
 readme = open('README.txt').read()
 history = open('/'.join(['docs', 'HISTORY.txt'])).read()
-tests_require = ['collective.monkeypatcher']
 
 
 setup(name=name,

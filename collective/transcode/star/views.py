@@ -1,5 +1,5 @@
 from Products.Five.browser import BrowserView
-from collective.transcode.interfaces import ICallbackView, ITranscodeTool
+from collective.transcode.star.interfaces import ICallbackView, ITranscodeTool
 from zope.interface import implements
 from zope.component import getUtility
 from crypto import encrypt, decrypt

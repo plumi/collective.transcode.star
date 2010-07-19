@@ -1,6 +1,6 @@
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.app.layout.viewlets.common import ViewletBase
-from collective.transcode.interfaces import ITranscodeTool
+from collective.transcode.star.interfaces import ITranscodeTool
 from zope.component import getUtility
 
 class TranscodeViewlet(ViewletBase):

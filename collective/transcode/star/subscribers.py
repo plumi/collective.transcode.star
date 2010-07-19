@@ -7,7 +7,7 @@ from zope.component import getSiteManager
 from zope.interface.interfaces import IInterface
 from zope.component.interfaces import ObjectEvent
 from Products.CMFCore.interfaces import IContentish
-from collective.transcode.interfaces import ITranscodeTool
+from collective.transcode.star.interfaces import ITranscodeTool
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent  
 from zope.lifecycleevent.interfaces import IObjectCreatedEvent 
 from plone.registry.interfaces import IRegistry 

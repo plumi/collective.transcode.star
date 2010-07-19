@@ -12,9 +12,9 @@
 
   <genericsetup:registerProfile
       name="default"
-      title="collective.transcode"
+      title="Transcode Star"
       directory="profiles/default"
-      description="Installs the collective.transcode package"
+      description="Installs the Transcode Star package"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
   
@@ -43,7 +43,7 @@
 
   <browser:viewlet
       name="collective.transcode"
-      for="collective.transcode.interfaces.ITranscoded"
+      for=".interfaces.ITranscoded"
       manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
       permission="zope2.View"
       template="viewlet.pt"
