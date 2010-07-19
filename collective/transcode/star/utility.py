@@ -1,4 +1,4 @@
-from collective.transcode.interfaces import ITranscodeTool, ITranscoded, ITranscodedEvent
+from collective.transcode.star.interfaces import ITranscodeTool, ITranscoded, ITranscodedEvent
 from hashlib import md5
 from zope.app.container.btree import BTreeContainer
 import xmlrpclib
@@ -7,7 +7,7 @@ import urllib
 import logging
 from plone.registry.interfaces import IRegistry
 from persistent.dict import PersistentDict
-from collective.transcode.crypto import encrypt, decrypt
+from collective.transcode.star.crypto import encrypt, decrypt
 from Products.CMFCore.utils import getToolByName
 from urllib import urlencode
 from datetime import datetime
