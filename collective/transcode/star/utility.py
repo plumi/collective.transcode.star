@@ -129,7 +129,7 @@ class TranscodeTool(BTreeContainer):
            Select the daemon with the minimun queueSize
         """
         registry = getUtility(IRegistry)
-        daemons = registry['collective.transcode.interfaces.ITranscodeSettings.daemon_address']
+        daemons = registry['collective.transcode.star.interfaces.ITranscodeSettings.daemon_address']
         if len(daemons) == 0:
             log.warn(u"No transcode daemons available")
             return
@@ -160,15 +160,15 @@ class TranscodeTool(BTreeContainer):
           Return the list of supported profiles from the registry
         """
         registry = getUtility(IRegistry)
-        return registry['collective.transcode.interfaces.ITranscodeSettings.transcode_profiles']
+        return registry['collective.transcode.star.interfaces.ITranscodeSettings.transcode_profiles']
 
     def secret(self):
         registry = getUtility(IRegistry)
-        return registry['collective.transcode.interfaces.ITranscodeSettings.secret']
+        return registry['collective.transcode.star.interfaces.ITranscodeSettings.secret']
 
     def supported_mime_types(self):        
         registry = getUtility(IRegistry)
-        return registry['collective.transcode.interfaces.ITranscodeSettings.mime_types']
+        return registry['collective.transcode.star.interfaces.ITranscodeSettings.mime_types']
 
 
     def is_pending(self, UID, fieldName, profile, md5sum, timeout=14400):

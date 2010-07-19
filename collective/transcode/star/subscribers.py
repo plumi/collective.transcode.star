@@ -31,7 +31,7 @@ def editFile(obj, event):
         return
     try:
         registry = getUtility(IRegistry)
-        types = registry['collective.transcode.interfaces.ITranscodeSettings.portal_types']
+        types = registry['collective.transcode.star.interfaces.ITranscodeSettings.portal_types']
         newTypes = [t.split(':')[0] for t in types]
         if unicode(obj.portal_type) not in newTypes:
             return
