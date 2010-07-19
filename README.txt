@@ -1,7 +1,8 @@
 Introduction
 ============
 
-collective.transcode is a Plone product that offers transcoding services
+collective.transcode.* or collective.transcode.star, or simply transcode star,  
+is a suite of components that offer transcoding services to Plone sites
 for Archetypes content. It works out of the box with standard Plone Files, 
 providing transcoding to mp4 and ogv for video files. Additionally, it can be
 configured through the Plone Control Panel, to work with any custom AT content

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import os
 
 version = '0.2'
-name = 'collective.transcode'
+name = 'collective.transcode.star'
 path = name.split('.') + ['version.txt']
 version = open('/'.join(path)).read().strip()
 readme = open('README.txt').read()
@@ -31,10 +31,10 @@ setup(name=name,
       keywords='video transcoding plone ffmpeg mp4 ogg',
       author='https://unweb.me',
       author_email='we@unweb.me',
-      url='https://svn.plone.org/svn/collective/collective.transcode',
+      url='https://svn.plone.org/svn/collective/collective.transcode.star',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
-      namespace_packages=['collective'],
+      namespace_packages=['collective', 'collective.transcode'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
