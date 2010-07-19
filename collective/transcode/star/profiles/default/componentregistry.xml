@@ -2,8 +2,8 @@
 <componentregistry>
   <utilities>
     <utility
-      interface="collective.transcode.interfaces.ITranscodeTool"
-      factory="collective.transcode.utility.TranscodeTool"
+      interface="collective.transcode.star.interfaces.ITranscodeTool"
+      factory="collective.transcode.star.utility.TranscodeTool"
     />
   </utilities>
 </componentregistry>

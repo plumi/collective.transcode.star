@@ -1,4 +1,4 @@
 <registry>
-    <records interface="collective.transcode.interfaces.ITranscodeSettings" />
+    <records interface="collective.transcode.star.interfaces.ITranscodeSettings" />
 </registry>
 
