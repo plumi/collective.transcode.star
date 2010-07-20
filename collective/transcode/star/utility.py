@@ -20,6 +20,9 @@ from zope.component import getSiteManager
 from zope.component.interfaces import ObjectEvent
 from zope.event import notify
 
+from zope.component import queryUtility
+from plone.i18n.normalizer.interfaces import IIDNormalizer
+
 log = logging.getLogger('collective.transcode')
 
 class TranscodeTool(BTreeContainer):
@@ -85,7 +88,10 @@ class TranscodeTool(BTreeContainer):
                 # TODO securely serve files under serve_daemon view
                 fileUrl = portal_url + '/@@serve_daemon'
                 fileType = field.getContentType(obj)
-                fileName = field.getFilename(obj)
+                # transliteration of stange filenames
+                util = queryUtility(IIDNormalizer)
+                fileName = util.normalize(field.getFilename(obj))
+
                 options = dict()
                 input = {
                           'path' : filePath,
