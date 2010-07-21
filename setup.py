@@ -2,10 +2,7 @@ from setuptools import setup, find_packages
 import os
 
 name = 'collective.transcode.star'
-path = name.split('.') + ['version.txt']
-version = open('/'.join(path)).read().strip()
-history = open('/'.join(['docs', 'HISTORY.txt'])).read()
-
+version = '0.2'
 
 long_description = (
     read('README.txt')
@@ -27,7 +24,7 @@ long_description = (
 setup(name=name,
       version=version,
       description="Transcoding support for Plone video files, using collective.transcode.daemon",
-      long_description = readme[readme.find('\n\n'):] + '\n' + history,
+      long_description = long_description,
       # Get more strings from
       # http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers = [
