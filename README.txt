@@ -11,8 +11,7 @@ transcode.star also shares some basic principles:
  * Be simplistic. If there is a simple way of doing it, do it that way.
  * Be Ploneish. Plone already has 90% of what we need built in. Use it.
 
-Out of the box, it works with standard Plone Files. It will be triggered when
- uploading video content which will then be transcoded to mp4 and ogv format. 
+Out of the box, it works with standard Plone Files. It will be triggered when uploading video content which will then be transcoded to mp4 and ogv format. 
 Additionally, a jpeg thumbnail will be extracted from the 5th second of the 
 videos and a flowplayer viewlet pointing to the mp4 file will be displayed 
 inside the IAboveContentBody viewlet manager.
@@ -32,7 +31,6 @@ daemons. You site will select the daemon with the minimum queue length.
 
 All communication between transcode.star and transcode.daemon is encrypted.
 
-
 Requirements
 ============
 Apart from what is assembled by the buildout, the following dependencies must
@@ -47,31 +45,31 @@ In Ubuntu 10.04 you can install the above using the following commands:
 
     sudo aptitude install build-essential libavcodec-unstripped-52 ffmpeg ffmpeg2theora
 
-
 Installation
 ============
 For production deployments make sure you change the secret key in your buildout.cfg
 
 Plone 4.x
 ~~~~~~~~~
+::
 
     python2.6 bootstrap.py
     ./bin/buildout
 
 Plone 3.x
 ~~~~~~~~~
+::
 
     python2.4 bootstrap.py -c buildout-p3.cfg
     ./bin/buildout -c buildout-p3.cfg
 
-
 Usage
 =====
-Start the transcode daemon:
+Start the transcode daemon::
 
     ./bin/transcodedaemon start # or fg to start it in the foreground
 
-Start Zope:
+Start Zope::
 
     ./bin/instance start
 
@@ -85,8 +83,7 @@ well.
 Then simply add a new object (File by default) and upload a file with a 
 mimetype in the supported mimetypes. If you are running transcodedaemon and 
 zope in the foreground you will be able to see the transcoding process taking 
-place. When the transcoding is complete, refresh your content type's view page
- and you should see a flowplayer instance above your content loaded with the mp4
+place. When the transcoding is complete, refresh your content type's view page and you should see a flowplayer instance above your content loaded with the mp4
 version of your video.
 
 Authors
