@@ -1,13 +1,28 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.2'
 name = 'collective.transcode.star'
 path = name.split('.') + ['version.txt']
 version = open('/'.join(path)).read().strip()
-readme = open('README.txt').read()
 history = open('/'.join(['docs', 'HISTORY.txt'])).read()
 
+
+long_description = (
+    read('README.txt')
+    + '\n' +
+    'Contributors\n' 
+    '************\n'
+    + '\n' +
+    read('CONTRIBUTORS.txt')
+    + '\n' +
+    'Change history\n'
+    '**************\n'
+    + '\n' + 
+    read('CHANGES.txt')
+    + '\n' +
+   'Download\n'
+    '********\n'
+    )
 
 setup(name=name,
       version=version,
@@ -27,7 +42,7 @@ setup(name=name,
         'Programming Language :: Python',
         'Topic :: Software Development :: Libraries :: Python Modules',
       ],
-      keywords='video transcoding plone ffmpeg mp4 ogg',
+      keywords='video transcoding plone ffmpeg flv mp4 ogg',
       author='https://unweb.me',
       author_email='we@unweb.me',
       url='https://svn.plone.org/svn/collective/collective.transcode.star',

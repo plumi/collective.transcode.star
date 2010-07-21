@@ -1,5 +1,3 @@
-AUTHORS
--------
 Dimitris Moraitis <dimo@unweb.me>
 Chris Psaltis <cpsaltis@unweb.me>
 Markos Gogoulos <mgogoulos@unweb.me>
