@@ -1,6 +1,5 @@
 Introduction
 ============
-
 collective.transcode.* or transcode.star for short, is a suite of modules 
 that provide transcoding services to Plone sites.
 
@@ -10,7 +9,7 @@ transcode.star also shares some basic principles:
  * Be modular. Not everyone wants everything your software has to offer.
  * Be flexible. Don't assume that people want to use your software in one particular way.
  * Be simplistic. If there is a simple way of doing it, do it that way.
- * Be Ploneish. Plone already has 90% of what a blog needs built in. Use it.
+ * Be Ploneish. Plone already has 90% of what we need built in. Use it.
 
 Out of the box, it works with standard Plone Files. It will be triggered when
  uploading video content which will then be transcoded to mp4 and ogv format. 
@@ -51,7 +50,6 @@ In Ubuntu 10.04 you can install the above using the following commands:
 
 Installation
 ============
-
 For production deployments make sure you change the secret key in your buildout.cfg
 
 Plone 4.x
@@ -69,7 +67,6 @@ Plone 3.x
 
 Usage
 =====
-
 Start the transcode daemon:
 
     ./bin/transcodedaemon start # or fg to start it in the foreground
@@ -91,4 +88,8 @@ zope in the foreground you will be able to see the transcoding process taking
 place. When the transcoding is complete, refresh your content type's view page
  and you should see a flowplayer instance above your content loaded with the mp4
 version of your video.
+
+Authors
+=======
+Unweb.me, https://unweb.me
  
