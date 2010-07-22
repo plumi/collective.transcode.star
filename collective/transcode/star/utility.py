@@ -85,12 +85,12 @@ class TranscodeTool(BTreeContainer):
 
                 portal_url = getToolByName(obj,'portal_url')()
                 filePath = obj.absolute_url() 
-                # TODO securely serve files under serve_daemon view
                 fileUrl = portal_url + '/@@serve_daemon'
                 fileType = field.getContentType(obj)
                 # transliteration of stange filenames
-                util = queryUtility(IIDNormalizer)
-                fileName = util.normalize(field.getFilename(obj))
+                fileName = field.getFilename(obj)                
+                norm = queryUtility(IIDNormalizer)
+                fileName = norm.normalize(fileName.decode('utf-8'))
 
                 options = dict()
                 input = {
