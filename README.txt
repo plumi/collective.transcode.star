@@ -3,25 +3,29 @@ Introduction
 collective.transcode.* or transcode.star for short, is a suite of modules 
 that provide transcoding services to Plone sites.
 
-The naming scheme has been inspired from collective.blog.star, with which
-transcode.star also shares some basic principles:
+Both the naming scheme and the basic design priciples were inspired by 
+collective.blog.star. Namely:
 
  * Be modular. Not everyone wants everything your software has to offer.
- * Be flexible. Don't assume that people want to use your software in one particular way.
+ * Be flexible. Don't assume that people want to use your software in one way.
  * Be simplistic. If there is a simple way of doing it, do it that way.
  * Be Ploneish. Plone already has 90% of what we need built in. Use it.
 
-Out of the box, it works with standard Plone Files. It will be triggered when uploading video content which will then be transcoded to mp4 and ogv format. 
-Additionally, a jpeg thumbnail will be extracted from the 5th second of the 
-videos and a flowplayer viewlet pointing to the mp4 file will be displayed 
-inside the IAboveContentBody viewlet manager.
+It works out of the box with standard Plone Files, providing transcoding 
+services to web friendly formats (mp4, ogv) when uploading video content. 
+Additionally, a jpeg thumbnail is being extracted from the 5th second of the 
+videos and a flowplayer viewlet pointing to the produced mp4 file will be 
+displayed inside the IAboveContentBody viewlet manager when transcoding is 
+complete.
 
-Transcode.star can be easily configured through the Plone Control Panel, to 
+Transcode.star can be easily configured through the Plone Control Panel to 
 work with any custom AT content type, as long as there is a File field. Just 
-got to the Transcode Settings panel and enter a new entry in the supported 
-portal_types in the form of YourCustomATName:yourFileFieldNameSupport 
+got to the Transcode Settings panel and enter a new line in the supported 
+portal_types following the format customPortalType:fileFieldName where
+customPortalType the name of your portal_type and fileFieldName the name
+of the file field that you need transcoding for.
 
-Support for Dexterity content types is planned for future versions
+Support for Dexterity content types is planned for the coming versions
 
 For the transcoding to work you need to start the transcodedaemon instance 
 provided in the buildout.

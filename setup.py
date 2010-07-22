@@ -13,12 +13,9 @@ long_description = (
     'Contributors\n' 
     '************\n'
     + '\n' +
-    read('CONTRIBUTORS.txt')
+    read('docs/CONTRIBUTORS.txt')
     + '\n' +
-    'Change history\n'
-    '**************\n'
-    + '\n' + 
-    read('CHANGES.txt')
+    read('docs/HISTORY.txt')
     + '\n' +
    'Download\n'
     '********\n'
@@ -31,7 +28,6 @@ setup(name=name,
       # Get more strings from
       # http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers = [
-        'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
         'Framework :: Plone',
         'Intended Audience :: Developers',

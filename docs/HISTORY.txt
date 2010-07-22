@@ -1,7 +1,8 @@
 Changelog
 =========
 
-0.1dev (unreleased)
--------------------
+0.2 (2010-07-22)
+----------------
 
-- Initial release
+ - First public release
+   [dimo]
