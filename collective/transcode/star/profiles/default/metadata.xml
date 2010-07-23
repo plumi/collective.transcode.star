@@ -1,6 +1,6 @@
 <metadata>
-  <description>This is the profile description</description>
-  <version>1.0</version>
+  <description>Transcoding support for Plone</description>
+  <version>0.2</version>
   <dependencies>
     <dependency>profile-plone.app.registry:default</dependency>
     <dependency>profile-collective.flowplayer:default</dependency>
