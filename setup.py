@@ -11,14 +11,14 @@ long_description = (
     read('README.txt')
     + '\n' +
     'Contributors\n' 
-    '************\n'
+    '~~~~~~~~~~~~\n'
     + '\n' +
     read('docs/CONTRIBUTORS.txt')
     + '\n' +
     read('docs/HISTORY.txt')
     + '\n' +
    'Download\n'
-    '********\n'
+   '--------\n'
     )
 
 setup(name=name,

@@ -6,10 +6,10 @@ that provide transcoding services to Plone sites.
 Both the naming scheme and the basic design priciples were inspired by 
 collective.blog.star. Namely:
 
- * Be modular. Not everyone wants everything your software has to offer.
- * Be flexible. Don't assume that people want to use your software in one way.
- * Be simplistic. If there is a simple way of doing it, do it that way.
- * Be Ploneish. Plone already has 90% of what we need built in. Use it.
+* Be modular. Not everyone wants everything your software has to offer.
+* Be flexible. Don't assume that people want to use your software in one way.
+* Be simplistic. If there is a simple way of doing it, do it that way.
+* Be Ploneish. Plone already has 90% of what we need built in. Use it.
 
 It works out of the box with standard Plone Files, providing transcoding 
 services to web friendly formats (mp4, ogv) when uploading video content. 
@@ -30,7 +30,7 @@ Support for Dexterity content types is planned for the coming versions.
 For the transcoding to work you need to start the transcodedaemon instance 
 provided in the buildout.
 
-If you transcoding needs are high, you can configure several transcode 
+If your transcoding needs are high, you can configure several transcode 
 daemons in a load balanced setup. Transcode.star will select the daemon with 
 the minimum transcoding queue length.
 
@@ -59,15 +59,15 @@ In Ubuntu 10.04 you can install the above using the following commands:
 Installation
 ------------
 
-Plone 4.x
+Plone 4.0
 ~~~~~~~~~
 ::
 
     python2.6 bootstrap.py
     ./bin/buildout
 
-Plone 3.x
-~~~~~~~~~
+Plone 3.3.5
+~~~~~~~~~~~
 ::
 
     python2.4 bootstrap.py -c buildout-p3.cfg
@@ -105,5 +105,6 @@ directly by Apache instead of Twisted.
 
 Credits
 -------
--Created by unweb.me - https://unweb.me
--Development was partially sponsored by EngageMedia - https://engagemedia.org
+* Created by unweb.me - https://unweb.me
+* Development partially sponsored by EngageMedia - http://engagemedia.org
+
