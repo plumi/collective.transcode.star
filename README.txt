@@ -106,4 +106,4 @@ directly by Apache instead of Twisted.
 Credits
 -------
 -Created by unweb.me - https://unweb.me
--Development was Partially sponsored by EngageMedia - https://engagemedia.org
+-Development was partially sponsored by EngageMedia - https://engagemedia.org
