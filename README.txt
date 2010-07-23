@@ -19,24 +19,26 @@ displayed inside the IAboveContentBody viewlet manager when transcoding is
 complete.
 
 Transcode.star can be easily configured through the Plone Control Panel to 
-work with any custom AT content type, as long as there is a File field. Just 
-got to the Transcode Settings panel and enter a new line in the supported 
-portal_types following the format customPortalType:fileFieldName where
-customPortalType the name of your portal_type and fileFieldName the name
+work with any custom AT content type, as long as there is a File field in the
+schema. Ggo to the Transcode Settings panel and enter a new line in the 
+supported portal_types following the format customPortalType:fileFieldName 
+where customPortalType the name of your portal_type and fileFieldName the name
 of the file field that you need transcoding for.
 
-Support for Dexterity content types is planned for the coming versions
+Support for Dexterity content types is planned for the coming versions.
 
 For the transcoding to work you need to start the transcodedaemon instance 
 provided in the buildout.
 
 If you transcoding needs are high, you can configure several transcode 
-daemons. You site will select the daemon with the minimum queue length.
+daemons in a load balanced setup. Transcode.star will select the daemon with 
+the minimum transcoding queue length.
 
-All communication between transcode.star and transcode.daemon is encrypted.
+All communication between transcode.star and transcode.daemon is encrypted 
+using symmetric encryption by the pycrypto module.
 
 Requirements
-============
+------------
 Apart from what is assembled by the buildout, the following dependencies must
 be installed manually for the transcoding scripts to work:
 
@@ -44,14 +46,18 @@ be installed manually for the transcoding scripts to work:
  * ffmpeg2theora
 
 In Ubuntu 10.04 you can install the above using the following commands:
+::
 
-    sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list && sudo apt-get --quiet update && sudo apt-get --yes --quiet --allow-unauthenticated install medibuntu-keyring && sudo apt-get --quiet update
-
-    sudo aptitude install build-essential libavcodec-unstripped-52 ffmpeg ffmpeg2theora
+    sudo wget --output-document=/etc/apt/sources.list.d/medibuntu.list \
+    http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list
+    sudo apt-get --quiet update && sudo apt-get --yes --quiet \
+    --allow-unauthenticated install medibuntu-keyring
+    sudo apt-get --quiet update
+    sudo aptitude install build-essential libavcodec-unstripped-52 ffmpeg \
+    ffmpeg2theora
 
 Installation
-============
-For production deployments make sure you change the secret key in your buildout.cfg
+------------
 
 Plone 4.x
 ~~~~~~~~~
@@ -68,7 +74,7 @@ Plone 3.x
     ./bin/buildout -c buildout-p3.cfg
 
 Usage
-=====
+-----
 Start the transcode daemon::
 
     ./bin/transcodedaemon start # or fg to start it in the foreground
@@ -87,10 +93,17 @@ well.
 Then simply add a new object (File by default) and upload a file with a 
 mimetype in the supported mimetypes. If you are running transcodedaemon and 
 zope in the foreground you will be able to see the transcoding process taking 
-place. When the transcoding is complete, refresh your content type's view page and you should see a flowplayer instance above your content loaded with the mp4
+place. When the transcoding is complete, refresh your content type's view page 
+and you should see a flowplayer instance above your content loaded with the mp4
 version of your video.
 
-Authors
-=======
-Unweb.me, https://unweb.me
- 
+For production deployments make sure you change the secret key in buildout.cfg
+and in the Transcode Settings Panel.
+
+Also, when using in production make sure that the transcoded files are served 
+directly by Apache instead of Twisted.
+
+Credits
+-------
+-Created by unweb.me - https://unweb.me
+-Development was Partially sponsored by EngageMedia - https://engagemedia.org
