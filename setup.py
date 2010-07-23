@@ -52,8 +52,8 @@ setup(name=name,
           # -*- Extra requirements: -*-
           'plone.app.registry',
           'pycrypto',
+          'hashlib',
           'collective.flowplayer',
-          'hashlib'
       ],
       entry_points="""
       # -*- Entry points: -*-
