@@ -20,8 +20,8 @@ complete.
 
 Transcode.star can be easily configured through the Plone Control Panel to 
 work with any custom AT content type, as long as there is a File field in the
-schema. Ggo to the Transcode Settings panel and enter a new line in the 
-supported portal_types following the format customPortalType:fileFieldName 
+schema. In the Transcode Settings panel you can enter a new line in the 
+supported portal types, following the format customPortalType:fileFieldName 
 where customPortalType the name of your portal_type and fileFieldName the name
 of the file field that you need transcoding for.
 
@@ -34,8 +34,7 @@ If your transcoding needs are high, you can configure several transcode
 daemons in a load balanced setup. Transcode.star will select the daemon with 
 the minimum transcoding queue length.
 
-All communication between transcode.star and transcode.daemon is encrypted 
-using symmetric encryption by the pycrypto module.
+All communication between transcode.star and transcode.daemon is encrypted using symmetric encryption by the pycrypto module so that the transcode server(s) transcode videos sent by the Plone site only, preventing abuse by third parties. Also extra care has been taken to transcode videos in private state (typical senario for a Plone site, when users upload a file) by using the same secure channel.
 
 Requirements
 ------------
