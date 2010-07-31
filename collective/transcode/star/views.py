@@ -63,7 +63,18 @@ class ServeDaemonView(BrowserView):
             if tt[uid][fieldName][profile]['status']!='pending':
                 log.error('status not pending')
                 raise
-            return field.download(obj)
+            if field.getFilename(obj).__class__ is unicode:
+                # Monkey patch the getFilename to go around plone.app.blob unicode filename bug
+                def getFilenameAsString(obj):
+                    return field.oldGetFilename(obj).encode(obj.getCharset(),'ignore')
+                field.oldGetFilename = field.getFilename
+                field.getFilename = getFilenameAsString
+                dl = field.download(obj)
+                field.getFilename = field.oldGetFilename
+                del field.oldGetFilename
+                return dl
+            else:
+                return field.download(obj)
         except Exception, e:
             log.error('Unauthorized file request: %s' % e)
             return

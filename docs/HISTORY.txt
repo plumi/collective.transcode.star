@@ -1,6 +1,13 @@
 Changelog
 ---------
 
+0.3 (2010-07-31)
+~~~~~~~~~~~~~~~~
+
+ - workaround for plone.app.blob issue with unicode filenames [dimo]
+ - fix forced retranscoding for pending requests [dimo]
+
+
 0.2 (2010-07-23)
 ~~~~~~~~~~~~~~~~
 

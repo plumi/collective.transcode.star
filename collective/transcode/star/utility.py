@@ -75,7 +75,10 @@ class TranscodeTool(BTreeContainer):
                 # Check if there is already a transcode request pending for the given field and profile
                 if self.is_pending(UID, fieldName, profile, md5sum):
                     log.info(u'transcode request already pending for %s:%s:%s:%s' % (UID, fieldName, profile,md5sum))
-                    continue
+                    if not force: 
+                        continue
+                    else:
+                        log.info('forcing retranscode')
                 if self.is_transcoded(UID, fieldName, profile, md5sum):
                     log.info(u'transcode request already finished for %s:%s:%s:%s' % (UID, fieldName, profile,md5sum))
                     if not force: 
