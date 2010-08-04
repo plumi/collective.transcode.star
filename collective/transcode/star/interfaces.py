@@ -30,7 +30,8 @@ class ITranscodeSettings(Interface):
                               default = (u'video/mpeg', u'video/3gpp', u'video/x-ms-wmv', 
                                          u'video/ogg', u'video/x-ogg', u'video/x-ogm+ogg', 
                                          u'video/mpeg', u'video/quicktime', u'video/x-la-asf', 
-                                         u'video/x-ms-asf', u'video/x-msvideo',),
+                                         u'video/x-ms-asf', u'video/x-msvideo', u'video/mp4',
+                                         u'video/flv', u'video/x-flv',),
                               )
 
     secret = schema.TextLine(title = u'Shared secret with transcode daemon(s)',
