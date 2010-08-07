@@ -27,7 +27,7 @@ class ITranscodeSettings(Interface):
 
     mime_types = schema.Tuple(title = u'Supported mime types',
                               value_type = schema.TextLine(title = u''),
-                              default = (u'video/mpeg', u'video/3gpp', u'video/x-ms-wmv', 
+                              default = (u'video/3gpp', u'video/x-ms-wmv', 
                                          u'video/ogg', u'video/x-ogg', u'video/x-ogm+ogg', 
                                          u'video/mpeg', u'video/quicktime', u'video/x-la-asf', 
                                          u'video/x-ms-asf', u'video/x-msvideo', u'video/mp4',
