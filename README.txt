@@ -1,7 +1,7 @@
 Introduction
 ============
 collective.transcode.* or transcode.star for short, is a suite of modules 
-that provide transcoding services to Plone sites.
+that provide transcoding services to Plone sites. 
 
 Both the naming scheme and the basic design priciples were inspired by 
 collective.blog.star. Namely:
