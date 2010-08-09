@@ -269,6 +269,14 @@ class TranscodeTool(BTreeContainer):
 
         return (obj, entry)
 
+    def status(self, obj, profile, fieldName = None):
+        """Check if it is transcoded with given profile"""
+        if not fieldName:
+            fieldName = obj.getPrimaryField().getName()
+        try:
+            return self[obj.UID()][fieldName][profile]['status']:
+        except Exception, e:
+            return False            
 
 class TranscodedEvent(ObjectEvent):
 

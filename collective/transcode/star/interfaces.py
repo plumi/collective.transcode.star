@@ -45,6 +45,9 @@ class ITranscodeTool(Interface):
     def add(self, obj):
         """add object to transcoding queue if not already there"""
 
+    def status(self, obj, profile, fieldName = None):
+        """Check if it is transcoded with given profile"""
+
     def callback(self, context, request):
         """handle callbacks"""
 
