@@ -274,7 +274,7 @@ class TranscodeTool(BTreeContainer):
         if not fieldName:
             fieldName = obj.getPrimaryField().getName()
         try:
-            return self[obj.UID()][fieldName][profile]['status']:
+            return self[obj.UID()][fieldName][profile]['status']
         except Exception, e:
             return False            
 
