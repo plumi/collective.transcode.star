@@ -41,11 +41,18 @@ for entry in rss.entries:
 cmd += [u'-files'] + files
 cmd += [u'-titles'] + titles
 cmd += [u'-out']
-cmd += [unicode(output_iso)]
+cmd += [unicode(output_iso[:-4])]
+
 try:
     subprocess.call(cmd)
 except:
     print 'problem when calling tovid command'
+
+try:
+    subprocess.call(["mkisofs", "-o", output_iso, output_iso[:-4]])
+except:
+    print 'problem when calling mkisofs command'
+
 
     
 #TODO 2: send callback that dvd is ready
