@@ -1,7 +1,8 @@
-#!./bin/daemonpy
+#!/usr/bin/env python
 
 import sys, subprocess, datetime, tempfile, os, urllib
 import feedparser
+
 
 if len(sys.argv) == 3:
     input_rss = sys.argv[1]
@@ -13,12 +14,13 @@ else:
 
 try:
     rss = feedparser.parse(input_rss)
+
 except:
     print 'cannot open rss feed url'
 
-cmd = [u'./bin/todisc', u'-menu-fontsize', u'36', u'-title-color', u'\'#ff7700\'', u'-stroke-color', u'black']
+cmd = [u'todisc', u'-overwrite', u'-pal' , u'-noask' , u'-menu-fontsize', u'36', u'-title-color', u'\'#ff7700\'', u'-stroke-color', u'black']
 
-dvd_title = unicode(rss.feed.title)
+dvd_title = unicode(rss.feed.title + "'s DVD")
 cmd += [u'-menu-title'] 
 cmd += [dvd_title]
 
@@ -26,12 +28,12 @@ files = []
 titles = []
 
 tempdir = tempfile.mkdtemp()
-
 for entry in rss.entries:
     try:
         titles.append(entry.title)
-        (video, response) = urllib.urlretrieve(entry.id, tempdir+'/'+entry.id.split('/')[-1])
-        files.append(video)
+        filepath = '/'.join(output_iso.split('/')[:2]) + '/' + '/'.join(entry.link.split('/')[2:][0].split(':')) + '/' + '/'.join(entry.link.split('/')[3:]) + '/mpeg2/' + str(entry.guid) + '.mpg'
+        video = urllib.urlretrieve(filepath)
+        files.append(video[0])
     except:
         #TODO: log problem
         pass
@@ -40,17 +42,10 @@ cmd += [u'-files'] + files
 cmd += [u'-titles'] + titles
 cmd += [u'-out']
 cmd += [unicode(output_iso)]
-
 try:
     subprocess.call(cmd)
 except:
     print 'problem when calling tovid command'
-
-
-try:
-    subprocess.call(["mkisofs", "-o", output_iso, tempdir])
-except:
-    print 'problem when calling mkisofs command' % 
 
     
 #TODO 2: send callback that dvd is ready
