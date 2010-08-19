@@ -3,7 +3,6 @@
 import sys, subprocess, datetime, tempfile, os, urllib
 import feedparser
 
-
 if len(sys.argv) == 3:
     input_rss = sys.argv[1]
     output_iso = sys.argv[2]
@@ -18,7 +17,7 @@ try:
 except:
     print 'cannot open rss feed url'
 
-cmd = [u'todisc', u'-overwrite', u'-pal' , u'-noask' , u'-menu-fontsize', u'36', u'-title-color', u'\'#ff7700\'', u'-stroke-color', u'black']
+cmd = [u'todisc', u'-pal' , u'-ffmpeg' , u'-menu-length', u'5', u'-noask' , u'-menu-fontsize', u'36', u'-title-color', u'\'#ff7700\'', u'-stroke-color', u'black']
 
 dvd_title = unicode(rss.feed.title + "'s DVD")
 cmd += [u'-menu-title'] 
@@ -53,7 +52,11 @@ try:
 except:
     print 'problem when calling mkisofs command'
 
-
+#delete tovid folder
+try:
+    subprocess.call(["rm", "-rf", output_iso[:-4]])
+except:
+    print 'problem when deleting temporary dvd folder'
     
 #TODO 2: send callback that dvd is ready
 #TODO 3: delete dvd and folder after some time

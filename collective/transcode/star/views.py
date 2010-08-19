@@ -1,5 +1,6 @@
 from Products.Five.browser import BrowserView
 from collective.transcode.star.interfaces import ICallbackView, ITranscodeTool
+from collective.transcode.burnstation.interfaces import IBurnTool
 from zope.interface import implements
 from zope.component import getUtility
 from crypto import encrypt, decrypt
@@ -35,11 +36,17 @@ class CallbackView(BrowserView):
         except Exception, e:
             log.error("Unauthorized callback %s" % result)
             return
-
-        if result['path']:
-            tt.callback(result)
+        if result['profile'] == 'dvd':
+            bt = getUtility(IBurnTool)
+            if result['path']:
+                bt.callback(result)
+            else:
+                bt.errback(result)
         else:
-            tt.errback(result)
+            if result['path']:
+                tt.callback(result)
+            else:
+                tt.errback(result)
 
 
 class ServeDaemonView(BrowserView):
