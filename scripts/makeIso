@@ -1,4 +1,4 @@
-#!bin/zopepy python
+#!bin/zopepy
 
 import sys, subprocess, datetime, os, urllib
 import feedparser
@@ -28,7 +28,7 @@ titles = []
 for entry in rss.entries:
     try:
         titles.append(entry.title)
-        filepath = '/'.join(output_iso.split('/')[:2]) + '/' + '/'.join(entry.link.split('/')[2:][0].split(':')) + '/' + '/'.join(entry.link.split('/')[3:]) + '/mpeg2/' + str(entry.guid) + '.mpg'
+        filepath = entry.link
         video = urllib.urlretrieve(filepath)
         files.append(video[0])
     except:
