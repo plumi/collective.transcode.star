@@ -1,4 +1,4 @@
-#!bin/zopepy
+#!/usr/bin/python
 
 import sys, subprocess, datetime, os, urllib
 import feedparser
@@ -16,8 +16,7 @@ try:
 except:
     print 'cannot open rss feed url'
 
-cmd = [u'tovid', u'disc', u'-pal' , u'-ffmpeg' , u'-menu-length', u'5', u'-noask' , u'-menu-fontsize', u'36', u'-title-color', u'\'#ff7700\'', u'-stroke', u'black']
-
+cmd = [u'tovid', u'disc', u'-pal' , u'-ffmpeg', u'-menu-length', u'5', u'-noask' , u'-titles-fontsize', u'16' , u'-menu-fontsize', u'36', u'-title-color', u'\'#ff7700\'', u'-stroke', u'black']
 dvd_title = unicode(rss.feed.title + "'s DVD")
 cmd += [u'-menu-title'] 
 cmd += [dvd_title]
@@ -27,7 +26,11 @@ titles = []
 
 for entry in rss.entries:
     try:
-        titles.append(entry.title)
+	if len(entry.title) > 40:
+	   title = entry.title[:37] + '...'
+	else:
+	   title = entry.title
+        titles.append(title)
         filepath = entry.link
         video = urllib.urlretrieve(filepath)
         files.append(video[0])
@@ -39,7 +42,6 @@ cmd += [u'-files'] + files
 cmd += [u'-titles'] + titles
 cmd += [u'-out']
 cmd += [unicode(output_iso[:-4])]
-
 try:
     subprocess.call(cmd)
 except:

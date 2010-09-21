@@ -1,7 +1,5 @@
 #!/bin/sh
 
-stringOut="$2"
-
-tovid mpg -pal -ffmpeg -dvd -noask -in "$1" -out ${stringOut%.*}
-
 #ffmpeg -i "$1" -target pal-dvd "$2"
+stringOut="$2"
+tovid mpg -pal -ffmpeg -dvd -force -noask -in "$1" -out ${stringOut%.*}
