@@ -132,6 +132,71 @@ class TranscodeTool(BTreeContainer):
                 log.info(u"added profile %s for field %s and content type %s in transcode queue" % ( profile, fieldName, obj.absolute_url()))
 
         return
+
+    def delete(self, obj, fieldNames = [], force = False):
+        '''Pass an xmlrpc call to the daemon when a video is deleted'''
+
+        UID = obj.UID()
+        log = logging.getLogger('plumi.content.subscribers')
+        tt = getUtility(ITranscodeTool)
+
+        # If no fieldNames have been defined as transcodable, then use the primary field
+        # TODO: check if they are actually file fields
+        if not fieldNames:
+            fields = [obj.getPrimaryField()]
+        else:
+            fields = [obj.getField(f) for f in fieldNames]
+
+        # If file is empty then do nothing
+        fileSize = sum([len(f.get(obj).data) for f in fields])
+        if not fileSize:
+            return
+        try:
+            address = tt.getNextDaemon()
+        except Exception, e:
+            log.error(u"Can't get daemon address %s" % e)
+            return
+
+        try:
+            transcodeServer = xmlrpclib.ServerProxy(address)
+            daemonProfiles = transcodeServer.getAvailableProfiles()
+        except Exception, e:
+            log.error(u"Could not connect to transcode daemon %s: %s" % (address, e))
+            return
+
+        secret = tt.secret()
+        for field in fields:
+            fieldName = field.getName()
+            if field.getContentType(obj) not in tt.supported_mime_types():
+                continue
+            data = StringIO(field.get(obj).data)
+            md5sum = md5(data.read()).hexdigest()
+
+            portal_url = getToolByName(obj,'portal_url')()
+            filePath = obj.absolute_url() 
+            fileUrl = portal_url + '/@@serve_daemon'
+            fileType = field.getContentType(obj)
+            # transliteration of stange filenames
+            fileName = field.getFilename(obj)                
+            norm = queryUtility(IIDNormalizer)
+            fileName = norm.normalize(fileName.decode('utf-8'))
+
+            options = dict()
+            input = {
+                      'path' : filePath,
+                      'url' : fileUrl,
+                      'type' : fileType,
+                      'fieldName' : fieldNames and fieldName or '', # don't send fieldName if it's the primary field
+                      'fileName' : fileName,
+                      'uid' : UID,
+                    }
+
+            # Encrypt and send the transcode request
+            input = {'key':b64encode(encrypt(str(input), secret))}
+            transcodeServer.delete(input, options, portal_url)
+            tt.__delitem__ ( UID )
+
+        return
    
     def getNextDaemon(self):
         """

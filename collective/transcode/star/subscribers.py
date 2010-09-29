@@ -41,3 +41,19 @@ def editFile(obj, event):
     except Exception, e:
         log.error("Could not transcode resource %s\n Exception: %s" % (obj.absolute_url(), e))
 
+def deleteTranscodedVideos(obj, event):
+   if is_transcode_installed(obj) is False:
+        return
+   if not obj.UID():
+        return
+   try:
+        registry = getUtility(IRegistry)
+        types = registry['collective.transcode.star.interfaces.ITranscodeSettings.portal_types']
+        newTypes = [t.split(':')[0] for t in types]
+        if unicode(obj.portal_type) not in newTypes:
+            return
+        fieldNames = [str(t.split(':')[1]) for t in types if ('%s:' % unicode(obj.portal_type)) in t]
+        tt = getUtility(ITranscodeTool)
+        tt.delete(obj, fieldNames)
+   except Exception, e:
+        log.error("Could not transcode resource %s\n Exception: %s" % (obj.absolute_url(), e))

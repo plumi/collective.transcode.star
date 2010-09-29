@@ -52,5 +52,9 @@
 
   <subscriber handler=".subscribers.addFile" />
   <subscriber handler=".subscribers.editFile" />
+  <subscriber 
+      for=".interfaces.ITranscoded
+           zope.app.container.interfaces.IObjectRemovedEvent"
+      handler=".subscribers.deleteTranscodedVideos" /> 
 
 </configure>

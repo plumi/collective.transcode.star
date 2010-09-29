@@ -1,0 +1,17 @@
+# use glob syntax.
+syntax: glob
+
+eggs/*
+parts/*
+src/*
+fake-eggs/*
+develop-eggs/*
+bin/*
+var/*
+downloads/*
+videos/*
+collective.transcode.star.egg-info/*
+Paste*
+*.pyc
+.installed.cfg
+.mr.developer.cfg
