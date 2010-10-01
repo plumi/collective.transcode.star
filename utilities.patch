@@ -1,0 +1,11 @@
+--- Products/CMFQuickInstallerTool/QuickInstallerTool.py.old
++++ Products/CMFQuickInstallerTool/QuickInstallerTool.py
+@@ -640,7 +640,7 @@
+ 
+         # only delete everything EXCEPT portalobjects (tools etc) for reinstall
+         cascade=[c for c in InstalledProduct.default_cascade
+-                 if c != 'portalobjects']
++                 if c not in ('portalobjects', 'utilities',)]
+         self.uninstallProducts(products, cascade, reinstall=True)
+         self.installProducts(products,
+                              stoponerror=True,
