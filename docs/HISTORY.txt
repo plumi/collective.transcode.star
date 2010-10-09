@@ -4,8 +4,8 @@ Changelog
 0.5 (2010-10-09)
 ~~~~~~~~~~~~~~~~
 
- - delete transcoded videos when the respective content objects are deleted from the portal [clopy]
- - prevent deletion of TranscodeTool on reinstallation [clopy]
+ - delete transcoded video files when the respective content objects are deleted from the portal [clopy, dimo]
+ - prevent deletion of TranscodeTool on reinstallation in Plone 3.x [clopy]
  - collective.transcode.burnstation support [clopy, dimo, cpsaltis, provetza]
 
 0.4 (2010-08-04)
