@@ -1,12 +1,17 @@
 from Products.Five.browser import BrowserView
 from collective.transcode.star.interfaces import ICallbackView, ITranscodeTool
-from collective.transcode.burnstation.interfaces import IBurnTool
 from zope.interface import implements
 from zope.component import getUtility
 from crypto import encrypt, decrypt
 from base64 import b64encode, b64decode
 import logging
 from collective.flowplayer.browser.view import File as FlowView
+
+try:
+    from collective.transcode.burnstation.interfaces import IBurnTool
+    BURNSTATION_SUPPORT=True
+except ImportError, e:
+    BURNSTATION_SUPPORT=False
 
 log = logging.getLogger('collective.transcode')
 
@@ -36,7 +41,8 @@ class CallbackView(BrowserView):
         except Exception, e:
             log.error("Unauthorized callback %s" % result)
             return
-        if result['profile'] == 'dvd':
+
+        if result['profile'] == 'dvd' and BURNSTATION_SUPPORT:
             bt = getUtility(IBurnTool)
             if result['path']:
                 bt.callback(result)
