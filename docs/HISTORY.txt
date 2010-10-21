@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+0.6 (2010-10-21)
+~~~~~~~~~~~~~~~~
+
+ - use transcode daemon 0.6, prevents possible pycrypto version conflict [dimo]
+
 0.5 (2010-10-09)
 ~~~~~~~~~~~~~~~~
 
