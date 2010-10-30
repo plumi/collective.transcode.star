@@ -4,14 +4,13 @@
 </a>
 </div>
 <div id="playcounter"></div>
-<script tal:content="string: videoserver = '${view/mp4/address|nothing}/'; mp4path = '${view/mp4/path|nothing}'" />
 <script>
 jq(function () {
 
     jq.ajaxSetup ({ cache: false});
 
-    $f().onStart(function() { piwikTracker.trackLink(videoserver+mp4path,'link');
-    jq.getScript(pkBaseURL + '?module=API&method=Actions.getOutlinks&idSite=' + site_id + '&period=year&date=last100&format=json&filter_column_recursive=label&filter_pattern_recursive='+ mp4path + '&expanded=1&jsoncallback=playcountercb');});
+    $f().onStart(function() { piwikTracker.trackLink($f().getPlaylist()[0].url,'link');
+    jq.getScript(pkBaseURL + '?module=API&method=Actions.getOutlinks&idSite=' + site_id + '&period=year&date=last100&format=json&filter_column_recursive=label&filter_pattern_recursive='+ $f().getPlaylist()[0].url.split('/').slice(3).join('/') + '&expanded=1&jsoncallback=playcountercb');});
 
 })
 
