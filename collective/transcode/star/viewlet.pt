@@ -3,12 +3,29 @@
 <img tal:attributes="src string:${view/jpeg/address|nothing}/${view/jpeg/path|nothing}" />
 </a>
 </div>
-
+<div id="playcounter"></div>
 <script tal:content="string: mp4path = '${view/mp4/address|nothing}/${view/mp4/path|nothing}'" />
 <script>
 jq(function () {
 
-    $f().onStart(function() { piwikTracker.trackLink(mp4path,'link');})
+    $f().onStart(function() { piwikTracker.trackLink(mp4path,'link');
+
+    jq.getScript('http://6of2.unweb.me/piwik/?module=API&method=Actions.getOutlinks&idSite=3&period=year&date=last100&format=json&filter_column_recursive=label&filter_pattern_recursive=snag&expanded=1&jsoncallback=playcountercb');});
 
 })
+
+window.playcountercb = function(jdata){
+hits = 0;
+for(var year in jdata)
+{
+    if (jdata[year].length > 0) {
+        hits += jdata[year][0]['nb_hits'];
+    }
+}
+
+jq('#playcounter').html(hits);
+};
+
+
 </script>
+
