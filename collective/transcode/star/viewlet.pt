@@ -4,33 +4,9 @@
 </a>
 </div>
 <script>
-$f("player", "http://releases.flowplayer.org/swf/flowplayer-3.2.5.swf", {
+jq(function () {
 
-	clip: {
-		// track start event for this clip
-		onStart: function(clip) {
-			piwikTracker.trackPageView();
-		},
+    $f().onStart(function() { piwikTracker.trackPageView();})
 
-		// track pause event for this clip. time (in seconds) is also tracked
-		onPause: function(clip) {
-		},
-
-		// track stop event for this clip. time is also tracked
-		onStop: function(clip) {
-		},
-
-		// track finish event for this clip
-		onFinish: function(clip) {
-		}
-	},
-
-	// show stop button so we can see stop events too
-	plugins: {
-		controls: {
-			stop: true
-		}
-	}
-
-});
+})
 </script>
