@@ -3,10 +3,12 @@
 <img tal:attributes="src string:${view/jpeg/address|nothing}/${view/jpeg/path|nothing}" />
 </a>
 </div>
+
+<script tal:content="string: mp4path = '${view/mp4/address|nothing}/${view/mp4/path|nothing}'" />
 <script>
 jq(function () {
 
-    $f().onStart(function() { piwikTracker.trackPageView();})
+    $f().onStart(function() { piwikTracker.trackLink(mp4path,'link');})
 
 })
 </script>
