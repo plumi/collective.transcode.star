@@ -19,7 +19,7 @@ hits = 0;
 for(var year in jdata)
 {
     if (jdata[year].length > 0) {
-        hits += jdata[year][0]['nb_hits'];
+        hits += jdata[year][0]['subtable'][0]['nb_hits'];
     }
 }
 
