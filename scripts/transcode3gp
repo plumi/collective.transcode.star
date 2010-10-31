@@ -1,0 +1,4 @@
+#!/bin/sh
+
+ffmpeg -y -i "$1" -vcodec h263 -s qcif -r 15 -b 125k -acodec libfaac -ac 1 -ar 32000 -ab 64k -f 3gp "$2" -vsync 2
+
