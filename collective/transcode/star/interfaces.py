@@ -17,7 +17,7 @@ class ITranscodeSettings(Interface):
 
     transcode_profiles = schema.Tuple(title = u'Transcode profiles', 
                                       value_type = schema.TextLine(title = u''),
-                                      default = (u'jpeg', u'mp4', u'ogg',),
+                                      default = (u'jpeg', u'mp4', u'ogg', u'3gp' u'iphone',),
                                       )
 
     portal_types = schema.Tuple(title = u'Portal types to transcode', 
@@ -37,7 +37,11 @@ class ITranscodeSettings(Interface):
     secret = schema.TextLine(title = u'Shared secret with transcode daemon(s)',
                              default = u'1771d99931264d538e75eeb19da7d6a0',
                             )
-
+    html5 = schema.Choice(title = u'Choose video embed method',
+				description=u"Choose if you would like to use just the HTML5 video tag, or Flash (Flowplayer) or if you would like to use HTML5 with Flowplayer as failback for browsers that don't support the HTML5 video tag",
+				values = ['HTML5 video tag', 'HTML5 Flash fallback', 'Flash - Flowplayer'],
+				default = "HTML5 Flash fallback",
+				)
 
 class ITranscodeTool(Interface):
     """TranscodeTool interface"""
