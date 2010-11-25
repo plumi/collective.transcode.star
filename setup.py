@@ -5,7 +5,7 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 name = 'collective.transcode.star'
-version = '0.6'
+version = '0.7'
 
 long_description = (
     read('README.txt')
@@ -61,6 +61,5 @@ setup(name=name,
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      setup_requires=["PasteScript"],
       paster_plugins=["ZopeSkel"],
       )

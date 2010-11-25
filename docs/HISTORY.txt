@@ -1,6 +1,12 @@
 Changelog
 ---------
 
+0.7 (2010-11-25)
+~~~~~~~~~~~~~~~~
+
+ - Remove PasteScript dependency from setup.py which was causing problems in dependent packages [dimo]
+ - use transcode daemon 0.7
+
 0.6 (2010-10-21)
 ~~~~~~~~~~~~~~~~
 
