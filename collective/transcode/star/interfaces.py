@@ -39,8 +39,8 @@ class ITranscodeSettings(Interface):
                             )
     html5 = schema.Choice(title = u'Choose video embed method',
 				description=u"Choose if you would like to use just the HTML5 video tag, or Flash (Flowplayer) or if you would like to use HTML5 with Flowplayer as failback for browsers that don't support the HTML5 video tag",
-				values = ['HTML5 video tag', 'HTML5 Flash fallback', 'Flash - Flowplayer'],
-				default = "HTML5 Flash fallback",
+				values = ['Flash - Flowplayer'],
+				default = "Flash - Flowplayer",
 				)
 
 class ITranscodeTool(Interface):

@@ -29,7 +29,7 @@ class TranscodeTool(BTreeContainer):
     
     implements(ITranscodeTool)
 
-    def add(self, obj, fieldNames = [], force = False):
+    def add(self, obj, fieldNames = [], force = False, profiles = []):
         """
            Add a portal object to the transcode queue
         """
@@ -59,7 +59,12 @@ class TranscodeTool(BTreeContainer):
             log.error(u"Could not connect to transcode daemon %s: %s" % (address, e))
             return
 
-        profiles = self.getProfiles()
+        supported_profiles = self.getProfiles()
+        if not profiles:
+            profiles = supported_profiles
+        else:
+            profiles = [p for p in profiles if p in supported_profiles]
+            
         secret = self.secret()
 
         for profile in profiles:
