@@ -1,6 +1,12 @@
 Changelog
 ---------
 
+0.8 (2011-03-10)
+~~~~~~~~~~~~~~~~
+
+ - add option to specify transcode profiles when adding jobs to transcode tool
+ - remove of unused html5 options
+
 0.7 (2010-11-25)
 ~~~~~~~~~~~~~~~~
 
