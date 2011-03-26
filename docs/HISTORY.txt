@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+0.9 (2011-03-29)
+~~~~~~~~~~~~~~~~
+
+ - pin plone.app.registry to 1.0b2 in Plone 3 buildout - thanks to Daniel Marks for reporting [dimo]
+
 0.8 (2011-03-10)
 ~~~~~~~~~~~~~~~~
 
