@@ -19,6 +19,7 @@ from zope.interface import implements
 from zope.component import getSiteManager
 from zope.component.interfaces import ObjectEvent
 from zope.event import notify
+from plone.registry.interfaces import IRegistry
 
 from zope.component import queryUtility
 from plone.i18n.normalizer.interfaces import IIDNormalizer
@@ -37,6 +38,13 @@ class TranscodeTool(BTreeContainer):
         UID = obj.UID()
         # If no fieldNames have been defined as transcodable, then use the primary field
         # TODO: check if they are actually file fields
+
+	if force and not fieldNames:
+	    registry = getUtility(IRegistry)
+	    types = registry['collective.transcode.star.interfaces.ITranscodeSettings.portal_types']
+	    newTypes = [t.split(':')[0] for t in types]
+	    fieldNames = [str(t.split(':')[1]) for t in types if ('%s:' % unicode(obj.portal_type)) in t]
+
         if not fieldNames:
             fields = [obj.getPrimaryField()]
         else:
@@ -92,7 +100,7 @@ class TranscodeTool(BTreeContainer):
                         log.info('forcing retranscode')
 
                 portal_url = getToolByName(obj,'portal_url')()
-                filePath = obj.absolute_url() 
+                filePath = '/'.join(('http:/',obj.portal_url.getPortalObject().id,input['uid'][:2],input['uid'][:4],input['uid']))
                 fileUrl = portal_url + '/@@serve_daemon'
                 fileType = field.getContentType(obj)
                 # transliteration of stange filenames
@@ -178,7 +186,7 @@ class TranscodeTool(BTreeContainer):
             md5sum = md5(data.read()).hexdigest()
 
             portal_url = getToolByName(obj,'portal_url')()
-            filePath = obj.absolute_url() 
+            filePath = '/'.join(('http:/',obj.portal_url.getPortalObject().id,input['uid'][:2],input['uid'][:4],input['uid'])) 
             fileUrl = portal_url + '/@@serve_daemon'
             fileType = field.getContentType(obj)
             # transliteration of stange filenames
