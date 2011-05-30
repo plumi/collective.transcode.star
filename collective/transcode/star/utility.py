@@ -100,7 +100,7 @@ class TranscodeTool(BTreeContainer):
                         log.info('forcing retranscode')
 
                 portal_url = getToolByName(obj,'portal_url')()
-                filePath = '/'.join(('http:/',obj.portal_url.getPortalObject().id,input['uid'][:2],input['uid'][:4],input['uid']))
+                filePath = '/'.join(('http:/',obj.portal_url.getPortalObject().id,UID[:2],UID[:4],UID))
                 fileUrl = portal_url + '/@@serve_daemon'
                 fileType = field.getContentType(obj)
                 # transliteration of stange filenames
