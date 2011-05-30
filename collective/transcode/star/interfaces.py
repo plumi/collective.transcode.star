@@ -17,7 +17,7 @@ class ITranscodeSettings(Interface):
 
     transcode_profiles = schema.Tuple(title = u'Transcode profiles', 
                                       value_type = schema.TextLine(title = u''),
-                                      default = (u'jpeg', u'mp4', u'ogg', u'3gp' u'iphone',),
+                                      default = (u'jpeg', u'mp4', u'ogg', u'3gp', u'iphone',),
                                       )
 
     portal_types = schema.Tuple(title = u'Portal types to transcode', 
