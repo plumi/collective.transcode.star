@@ -53,7 +53,7 @@ setup(name=name,
           'plone.app.registry',
           'pycrypto',
           'hashlib',
-          'collective.flowplayer',
+          'collective.mediaelementsjs',
       ],
       entry_points="""
       # -*- Entry points: -*-
