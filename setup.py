@@ -53,7 +53,7 @@ setup(name=name,
           'plone.app.registry',
           'pycrypto',
           'hashlib',
-          'collective.mediaelementsjs',
+          'collective.mediaelementjs',
       ],
       entry_points="""
       # -*- Entry points: -*-
