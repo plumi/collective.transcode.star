@@ -17,7 +17,7 @@ class ITranscodeSettings(Interface):
 
     transcode_profiles = schema.Tuple(title = u'Transcode profiles', 
                                       value_type = schema.TextLine(title = u''),
-                                      default = (u'jpeg', u'mp4', u'ogg', u'3gp', u'iphone',),
+                                      default = (u'jpeg', u'mp4', u'webm', u'low', u'webmlow',),
                                       )
 
     portal_types = schema.Tuple(title = u'Portal types to transcode', 
@@ -27,7 +27,7 @@ class ITranscodeSettings(Interface):
 
     mime_types = schema.Tuple(title = u'Supported mime types',
                               value_type = schema.TextLine(title = u''),
-                              default = (u'video/3gpp', u'video/x-ms-wmv', 
+                              default = (u'video/3gpp', u'video/x-ms-wmv', u'video/webm',
                                          u'video/ogg', u'video/x-ogg', u'video/x-ogm+ogg', 
                                          u'video/mpeg', u'video/quicktime', u'video/x-la-asf', 
                                          u'video/x-ms-asf', u'video/x-msvideo', u'video/mp4',
@@ -37,11 +37,6 @@ class ITranscodeSettings(Interface):
     secret = schema.TextLine(title = u'Shared secret with transcode daemon(s)',
                              default = u'1771d99931264d538e75eeb19da7d6a0',
                             )
-    html5 = schema.Choice(title = u'Choose video embed method',
-				description=u"Choose if you would like to use just the HTML5 video tag, or Flash (Flowplayer) or if you would like to use HTML5 with Flowplayer as failback for browsers that don't support the HTML5 video tag",
-				values = ['Flash - Flowplayer'],
-				default = "Flash - Flowplayer",
-				)
 
 class ITranscodeTool(Interface):
     """TranscodeTool interface"""

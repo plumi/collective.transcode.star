@@ -3,7 +3,6 @@
   <version>0.4</version>
   <dependencies>
     <dependency>profile-plone.app.registry:default</dependency>
-    <dependency>profile-collective.mediaelementjs:default</dependency>
   </dependencies>
 </metadata>
 
