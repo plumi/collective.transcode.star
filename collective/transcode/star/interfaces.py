@@ -10,28 +10,45 @@ class ITranscodedEvent(IObjectEvent):
 #TODO: add help messages
 class ITranscodeSettings(Interface):
     """Transcoding settings"""
-    daemon_address = schema.Tuple(title = u'Daemon address', 
+    daemon_address = schema.Tuple(title = u'Daemon address',
                                   value_type = schema.TextLine(title = u'address'),
                                   default = (u'http://localhost:8888',),
                                   )
 
-    transcode_profiles = schema.Tuple(title = u'Transcode profiles', 
+    transcode_profiles = schema.Tuple(title = u'Transcode profiles',
                                       value_type = schema.TextLine(title = u''),
-                                      default = (u'jpeg', u'mp4', u'webm', u'low', u'webmlow',),
+                                      default = (u'jpeg',
+                                                 u'iso',
+                                                 u'mpeg2',
+                                                 u'mpeg4-low',
+                                                 u'mpeg4-high',
+                                                 u'webm-low',
+                                                 u'webm-high',
+                                                ),
                                       )
 
-    portal_types = schema.Tuple(title = u'Portal types to transcode', 
+    portal_types = schema.Tuple(title = u'Portal types to transcode',
                                 value_type = schema.TextLine(title = u''),
                                 default = (u'File',),
                                 )
 
     mime_types = schema.Tuple(title = u'Supported mime types',
                               value_type = schema.TextLine(title = u''),
-                              default = (u'video/3gpp', u'video/x-ms-wmv', u'video/webm',
-                                         u'video/ogg', u'video/x-ogg', u'video/x-ogm+ogg', 
-                                         u'video/mpeg', u'video/quicktime', u'video/x-la-asf', 
-                                         u'video/x-ms-asf', u'video/x-msvideo', u'video/mp4',
-                                         u'video/flv', u'video/x-flv',),
+                              default = ('application/ogg',
+                                        'video/ogg',
+                                        'video/x-ogg',
+                                        'video/x-ogm+ogg',
+                                        'video/flv',
+                                        'video/x-flv',
+                                        'video/mpeg',
+                                        'video/3gpp',
+                                        'video/x-ms-wmv',
+                                        'video/quicktime',
+                                        'video/x-la-asf',
+                                        'video/x-ms-asf',
+                                        'video/x-msvideo',
+                                        'video/mp4',
+                                        'video/webm',),
                               )
 
     secret = schema.TextLine(title = u'Shared secret with transcode daemon(s)',

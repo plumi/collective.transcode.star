@@ -1,4 +1,0 @@
-#!/bin/sh
-
-HandBrakeCLI -i "$1" -o "$2" --preset="iPhone & iPod Touch" --decomb
-
