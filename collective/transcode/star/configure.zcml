@@ -8,7 +8,7 @@
 
   <five:registerPackage package="." initialize=".initialize" />
   <include package="plone.app.registry" />
-  <include package="collective.flowplayer" />
+  <include package="collective.mediaelementjs" />
 
   <genericsetup:registerProfile
       name="default"

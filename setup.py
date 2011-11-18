@@ -51,6 +51,7 @@ setup(name=name,
           'setuptools',
           # -*- Extra requirements: -*-
           'plone.app.registry',
+          'collective.mediaelementjs',
           'pycrypto',
           'hashlib',
       ],

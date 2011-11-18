@@ -10,7 +10,7 @@ from collective.flowplayer.browser.view import File as FlowView
 try:
     from collective.transcode.burnstation.interfaces import IBurnTool
     BURNSTATION_SUPPORT=True
-except ImportError, e:
+except ImportError:
     BURNSTATION_SUPPORT=False
 
 log = logging.getLogger('collective.transcode')
