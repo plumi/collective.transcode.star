@@ -1,7 +1,14 @@
 *.py?
+.installed.cfg
+.mr.developer.cfg
 collective.transcode.star.egg-info/
 bin/
+develop-eggs/
 eggs/
 include/
 lib/
+parts/
+src/
+var/
+
 
