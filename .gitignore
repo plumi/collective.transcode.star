@@ -1,2 +1,7 @@
 *.py?
 collective.transcode.star.egg-info/
+bin/
+eggs/
+include/
+lib/
+
