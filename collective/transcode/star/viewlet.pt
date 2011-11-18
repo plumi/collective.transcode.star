@@ -1,5 +1,16 @@
-<div tal:define="mp4path view/mp4/path|nothing" tal:attributes="class python:mp4path and 'autoFlowPlayer' or ''">
-<a tal:omit-tag="not: mp4path" tal:attributes="href string:${view/mp4/address|nothing}/${view/mp4/path|nothing}">
-<img tal:attributes="src string:${view/jpeg/address|nothing}/${view/jpeg/path|nothing}" />
-</a>
-</div>
+<video id="main-video" controls width="525" height="300"
+    tal:define="mp4 string:${view/mp4/address|nothing}/${view/mp4/path|nothing};
+                webm string:${view/webm/address|nothing}/${view/webm/path|nothing};
+                jpeg string:${view/jpeg/address|nothing}/${view/jpeg/path|nothing}"
+    tal:attributes="poster jpeg"
+    controls="controls" preload="none">
+   <source tal:condition="view/mp4" tal:attributes="src mp4" type="video/mp4" />
+   <source tal:condition="view/webm" tal:attributes="src webm" type="video/webm" />
+   <object width="525" height="300" type="application/x-shockwave-flash" data="++resource++collective.mediaelementjs/flashmediaelement.swf">
+       <param name="movie" value="++resource++collective.mediaelementjs/flashmediaelement.swf" />
+       <param name="flashvars" tal:attributes="value string:controls=true&poster=${jpeg}&file=${mp4}" />
+       <!-- Image as a last resort -->
+       <img tal:attributes="src jpeg" width="525" height="300" title="No video playback capabilities" />
+   </object>
+</video>
+

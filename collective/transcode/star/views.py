@@ -21,7 +21,7 @@ class File(FlowView):
         try:
             mp4 = tt[self.context.UID()]['file']['mp4']
             return '%s/%s' % (mp4['address'],mp4['path'])
-        except:
+        except Exception as e:
             return FlowView.href(self)
 
 class CallbackView(BrowserView):

@@ -8,10 +8,19 @@ class TranscodeViewlet(ViewletBase):
 
     def update(self):
         tt = getUtility(ITranscodeTool)
-
-        try:
-            uid = self.context.UID()
+        uid = self.context.UID()
+        
+        try:    
             self.mp4 = tt[uid][tt[uid].keys()[0]]['mp4']
+        except KeyError:
+            pass
+        
+        try:
+            self.webm = tt[uid][tt[uid].keys()[0]]['webm']
+        except KeyError:
+            pass
+        
+        try:
             self.jpeg = tt[uid][tt[uid].keys()[0]]['jpeg']
-        except:
+        except KeyError:
             pass
