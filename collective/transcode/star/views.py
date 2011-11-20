@@ -32,7 +32,7 @@ class CallbackView(BrowserView):
             log.error("Unauthorized callback %s" % result)
             return
 
-        if result['profile'] == 'dvd' and BURNSTATION_SUPPORT:
+        if result['profile'] == 'iso' and BURNSTATION_SUPPORT:
             bt = getUtility(IBurnTool)
             if result['path']:
                 bt.callback(result)
