@@ -5,7 +5,6 @@ from zope.component import getUtility
 from crypto import encrypt, decrypt
 from base64 import b64encode, b64decode
 import logging
-from collective.flowplayer.browser.view import File as FlowView
 
 try:
     from collective.transcode.burnstation.interfaces import IBurnTool
@@ -14,15 +13,6 @@ except ImportError:
     BURNSTATION_SUPPORT=False
 
 log = logging.getLogger('collective.transcode')
-
-class File(FlowView):
-    def href(self):
-        tt = getUtility(ITranscodeTool)
-        try:
-            mp4 = tt[self.context.UID()]['file']['mp4']
-            return '%s/%s' % (mp4['address'],mp4['path'])
-        except Exception as e:
-            return FlowView.href(self)
 
 class CallbackView(BrowserView):
     """
@@ -38,7 +28,7 @@ class CallbackView(BrowserView):
         try:
             result = eval(decrypt(b64decode(result['key']), secret), {"__builtins__":None},{})
             assert result.__class__ is dict
-        except Exception, e:
+        except Exception as e:
             log.error("Unauthorized callback %s" % result)
             return
 
@@ -88,6 +78,6 @@ class ServeDaemonView(BrowserView):
                 return dl
             else:
                 return field.download(obj)
-        except Exception, e:
+        except Exception as e:
             log.error('Unauthorized file request: %s' % e)
             return
