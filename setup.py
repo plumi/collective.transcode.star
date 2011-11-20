@@ -61,5 +61,4 @@ setup(name=name,
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      paster_plugins=["ZopeSkel"],
       )
