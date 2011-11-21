@@ -1,6 +1,6 @@
 <video id="main-video" controls width="525" height="300"
-    tal:define="mp4 string:${view/mp4/address|nothing}/${view/mp4/path|nothing};
-                webm string:${view/webm/address|nothing}/${view/webm/path|nothing};
+    tal:define="mp4 string:${view/mp4-low/address|nothing}/${view/mp4-low/path|nothing};
+                webm string:${view/webm-low/address|nothing}/${view/webm-low/path|nothing};
                 jpeg string:${view/jpeg/address|nothing}/${view/jpeg/path|nothing}"
     tal:attributes="poster jpeg"
     controls="controls" preload="none">
@@ -13,4 +13,3 @@
        <img tal:attributes="src jpeg" width="525" height="300" title="No video playback capabilities" />
    </object>
 </video>
-
