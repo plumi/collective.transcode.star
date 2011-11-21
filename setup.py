@@ -10,7 +10,7 @@ version = '0.10'
 long_description = (
     read('README.txt')
     + '\n' +
-    'Contributors\n' 
+    'Contributors\n'
     '~~~~~~~~~~~~\n'
     + '\n' +
     read('docs/CONTRIBUTORS.txt')
@@ -53,7 +53,6 @@ setup(name=name,
           'plone.app.registry',
           'collective.mediaelementjs',
           'pycrypto',
-          'hashlib',
       ],
       entry_points="""
       # -*- Entry points: -*-
