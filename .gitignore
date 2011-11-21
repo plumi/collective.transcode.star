@@ -4,6 +4,7 @@
 collective.transcode.star.egg-info/
 bin/
 develop-eggs/
+downloads/
 eggs/
 include/
 lib/
