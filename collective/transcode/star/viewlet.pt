@@ -4,8 +4,8 @@
                 jpeg string:${view/jpeg/address|nothing}/${view/jpeg/path|nothing}"
     tal:attributes="poster jpeg"
     controls="controls" preload="none">
-   <source tal:condition="view/mp4" tal:attributes="src mp4" type="video/mp4" />
-   <source tal:condition="view/webm" tal:attributes="src webm" type="video/webm" />
+   <source tal:condition="mp4" tal:attributes="src mp4" type="video/mp4" />
+   <source tal:condition="webm" tal:attributes="src webm" type="video/webm" />
    <object width="525" height="300" type="application/x-shockwave-flash" data="++resource++collective.mediaelementjs/flashmediaelement.swf">
        <param name="movie" value="++resource++collective.mediaelementjs/flashmediaelement.swf" />
        <param name="flashvars" tal:attributes="value string:controls=true&poster=${jpeg}&file=${mp4}" />
