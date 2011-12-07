@@ -1,11 +1,11 @@
 <video id="main-video" controls width="525" height="300"
-    tal:define="mp4 string:${view/mp4-low/address|nothing}/${view/mp4-low/path|nothing};
-                webm string:${view/webm-low/address|nothing}/${view/webm-low/path|nothing};
-                jpeg string:${view/jpeg/address|nothing}/${view/jpeg/path|nothing}"
+    tal:define="mp4 string:${view/profiles/mp4-low/address|nothing}/${view/profiles/mp4-low/path|nothing};
+                webm string:${view/profiles/webm-low/address|nothing}/${view/profiles/webm-low/path|nothing};
+                jpeg string:${view/profiles/jpeg/address|nothing}/${view/profiles/jpeg/path|nothing}"
     tal:attributes="poster jpeg"
     controls="controls" preload="none">
-   <source tal:condition="mp4" tal:attributes="src mp4" type="video/mp4" />
-   <source tal:condition="webm" tal:attributes="src webm" type="video/webm" />
+   <source tal:condition="view/profiles/mp4-low/path|view/profiles/mp4-high/path|nothing" tal:attributes="src mp4" type="video/mp4" />
+   <source tal:condition="view/profiles/webm-low/path|view/profiles/webm-high/path|nothing" tal:attributes="src webm" type="video/webm" />
    <object width="525" height="300" type="application/x-shockwave-flash" data="++resource++collective.mediaelementjs/flashmediaelement.swf">
        <param name="movie" value="++resource++collective.mediaelementjs/flashmediaelement.swf" />
        <param name="flashvars" tal:attributes="value string:controls=true&poster=${jpeg}&file=${mp4}" />

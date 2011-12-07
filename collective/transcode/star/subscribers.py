@@ -7,7 +7,7 @@ from zope.component import getSiteManager
 from zope.interface.interfaces import IInterface
 from zope.component.interfaces import ObjectEvent
 from Products.CMFCore.interfaces import IContentish
-from collective.transcode.star.interfaces import ITranscodeTool
+from collective.transcode.star.interfaces import ITranscodeTool, ITranscodedEvent
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent  
 from zope.lifecycleevent.interfaces import IObjectCreatedEvent 
 from plone.registry.interfaces import IRegistry 
@@ -41,6 +41,13 @@ def editFile(obj, event):
     except Exception, e:
         log.error("Could not transcode resource %s\n Exception: %s" % (obj.absolute_url(), e))
 
+
+@adapter(IContentish, ITranscodedEvent)
+def changeLayout(obj, event):
+    if obj.getLayout() == 'mediaelementjs':
+        obj.setLayout('file_view')
+
+    
 def deleteTranscodedVideos(obj, event):
    if is_transcode_installed(obj) is False:
         return

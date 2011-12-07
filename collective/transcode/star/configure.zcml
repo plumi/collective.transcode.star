@@ -52,6 +52,8 @@
 
   <subscriber handler=".subscribers.addFile" />
   <subscriber handler=".subscribers.editFile" />
+  <subscriber handler=".subscribers.changeLayout" />
+  
   <subscriber 
       for=".interfaces.ITranscoded
            zope.app.container.interfaces.IObjectRemovedEvent"
