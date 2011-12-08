@@ -18,9 +18,9 @@ class ITranscodeSettings(Interface):
     transcode_profiles = schema.Tuple(title = u'Transcode profiles',
                                       value_type = schema.TextLine(title = u''),
                                       default = (u'jpeg',
+                                                 u'webm-low',                                                 
                                                  u'mp4-low',
                                                  u'mp4-high',
-                                                 u'webm-low',
                                                  u'webm-high',
                                                 ),
                                       )
