@@ -1,3 +1,7 @@
+<div tal:condition="view/profiles/webm-high/path|nothing">
+    <a href="#" style="display:none" id="player-low">low</a> <a href="#" id="player-high">high</a>
+</div>
+
 <video id="main-video" controls width="525" height="300"
     tal:define="mp4 string:${view/profiles/mp4-low/address|nothing}/${view/profiles/mp4-low/path|nothing};
                 webm string:${view/profiles/webm-low/address|nothing}/${view/profiles/webm-low/path|nothing};
@@ -6,10 +10,69 @@
     controls="controls" preload="none">
    <source tal:condition="view/profiles/webm-low/path|view/profiles/webm-high/path|nothing" tal:attributes="src webm" type="video/webm" />
    <source tal:condition="view/profiles/mp4-low/path|view/profiles/mp4-high/path|nothing" tal:attributes="src mp4" type="video/mp4" />
-   <object width="525" height="300" type="application/x-shockwave-flash" data="++resource++collective.mediaelementjs/flashmediaelement.swf">
+   <object tal:condition="view/profiles/mp4-low/path|view/profiles/mp4-high/path|nothing"
+           width="525" height="300" type="application/x-shockwave-flash" data="++resource++collective.mediaelementjs/flashmediaelement.swf">
        <param name="movie" value="++resource++collective.mediaelementjs/flashmediaelement.swf" />
        <param name="flashvars" tal:attributes="value string:controls=true&poster=${jpeg}&file=${mp4}" />
        <!-- Image as a last resort -->
        <img tal:attributes="src jpeg" width="525" height="300" title="No video playback capabilities" />
    </object>
 </video>
+<script>
+$('video#main-video').mediaelementplayer();
+       
+function setCookie(name,value,days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = ";expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+var player = $('video#main-video').mediaelementplayer()[0].player;
+event = Event;
+</script>
+<script tal:condition="view/profiles/webm-high/path|nothing" language="JavaScript" tal:content="string:$(function(){
+    $('#player-low').click(function () {
+      setCookie('videores', 'low');
+      jq('#player-high')[0].style.display = ''; 
+      jq('#player-low')[0].style.display = 'none';
+      var extension = $('video')[0].currentSrc.split('.')[$('video')[0].currentSrc.split('.').length -1];
+      if (extension == 'webm') {
+          player.setSrc('${view/profiles/webm-low/address|nothing}/${view/profiles/webm-low/path|nothing}');
+      } else {
+          player.setSrc('${view/profiles/mp4-low/address|nothing}/${view/profiles/mp4-low/path|nothing}');
+      }
+      player.play(); 
+      return false
+    });
+    
+    $('#player-high').click(function () {
+      setCookie('videores', 'high');
+      jq('#player-high')[0].style.display = 'none';
+      jq('#player-low')[0].style.display = '';
+      var extension = $('video')[0].currentSrc.split('.')[$('video')[0].currentSrc.split('.').length -1];
+      if (extension == 'webm') {
+          player.setSrc('${view/profiles/webm-high/address|nothing}/${view/profiles/webm-high/path|nothing}');
+      } else {
+          player.setSrc('${view/profiles/mp4-high/address|nothing}/${view/profiles/mp4-high/path|nothing}');
+      }
+      player.play(); 
+      return false
+    });
+       
+});">
+</script>
