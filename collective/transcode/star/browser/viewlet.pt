@@ -44,7 +44,7 @@ event = Event;
     });
     
     $('#player-high').click(function () {
-        setCookie('videores', 'high');
+        createCookie('videores', 'high');
         jq('#player-high')[0].style.display = 'none';
         jq('#player-low')[0].style.display = '';
         var extension = $('video')[0].currentSrc.split('.')[$('video')[0].currentSrc.split('.').length -1];
