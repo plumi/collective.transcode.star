@@ -2,61 +2,31 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="collective.transcode">
 
-  <five:registerPackage package="." initialize=".initialize" />
-  <include package="plone.app.registry" />
-  <include package="collective.mediaelementjs" />
+    <five:registerPackage package="." initialize=".initialize" />
+    <include package="plone.app.registry" />
+    <include package="collective.mediaelementjs" />
 
-  <genericsetup:registerProfile
-      name="default"
-      title="Transcode Star"
-      directory="profiles/default"
-      description="Installs the Transcode Star package"
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      />
-  
-  <browser:page
-      name="transcode-controlpanel"
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-      permission="cmf.ManagePortal"
-      class=".controlpanel.TranscodeControlPanelView"
-      />
-   
-  <browser:page
-      name="transcode_callback"
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-      permission="zope2.View"
-      attribute="callback_xmlrpc"
-      allowed_interface=".interfaces.ICallbackView"
-      class=".views.CallbackView"
-      />
-
-  <browser:page
-      name="serve_daemon"
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-      permission="zope2.View"
-      class=".views.ServeDaemonView"
-      />
-
-  <browser:viewlet
-      name="collective.transcode"
-      for=".interfaces.ITranscoded"
-      manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
-      permission="zope2.View"
-      template="viewlet.pt"
-      class=".viewlets.TranscodeViewlet"
-  />
-
-  <subscriber handler=".subscribers.addFile" />
-  <subscriber handler=".subscribers.editFile" />
-  <subscriber handler=".subscribers.changeLayout" />
-  
-  <subscriber 
-      for=".interfaces.ITranscoded
-           zope.app.container.interfaces.IObjectRemovedEvent"
-      handler=".subscribers.deleteTranscodedVideos" /> 
+    <!-- Include the sub-packages that use their own configure.zcml files. -->
+    <include package=".browser" />
+    
+    <genericsetup:registerProfile
+        name="default"
+        title="Transcode Star"
+        directory="profiles/default"
+        description="Installs the Transcode Star package"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    
+    <subscriber handler=".subscribers.addFile" />
+    <subscriber handler=".subscribers.editFile" />
+    <subscriber handler=".subscribers.changeLayout" />
+    
+    <subscriber 
+        for=".interfaces.ITranscoded
+             zope.app.container.interfaces.IObjectRemovedEvent"
+        handler=".subscribers.deleteTranscodedVideos" /> 
 
 </configure>

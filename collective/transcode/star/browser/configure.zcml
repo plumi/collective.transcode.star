@@ -1,0 +1,47 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="collective.transcode">
+    
+  <browser:page
+      name="transcode-controlpanel"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      permission="cmf.ManagePortal"
+      class=".controlpanel.TranscodeControlPanelView"
+      />
+   
+  <browser:page
+      name="transcode_callback"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      permission="zope2.View"
+      attribute="callback_xmlrpc"
+      allowed_interface="collective.transcode.star.interfaces.ICallbackView"
+      class=".views.CallbackView"
+      />
+
+  <browser:page
+      name="serve_daemon"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      permission="zope2.View"
+      class=".views.ServeDaemonView"
+      />
+
+  <browser:page
+      name="embed_view"
+      for="collective.transcode.star.interfaces.ITranscoded"
+      class=".views.EmbedView"
+      template="embed.pt"
+      permission="zope2.View"
+      />
+      
+  <browser:viewlet
+      name="collective.transcode"
+      for="collective.transcode.star.interfaces.ITranscoded"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+      permission="zope2.View"
+      template="viewlet.pt"
+      class=".viewlets.TranscodeViewlet"
+  />    
+    
+</configure>

@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      i18n:domain="plumi">
+
+<!-- meta and link tags for facebook integration -->
+
+<head>
+    <tal:block>
+        <meta name="medium" content="video" />
+        <meta name="title" tal:attributes="content here/title" />
+        <meta name="description" tal:attributes="content here/description" />
+        <link rel="image_src" tal:condition="view/jpeg" tal:attributes="href view/jpeg" />
+    </tal:block>
+    <style>
+    #portal-footer, #portal-siteactions, #portal-colophon, #plone-document-byline { display: none; }
+    </style>
+    <div tal:replace="structure provider:plone.htmlhead" />
+    <link tal:replace="structure provider:plone.htmlhead.links" />
+</head>
+
+<body>
+
+<metal:main>
+    <tal:main-macro metal:define-macro="main">
+    <div id="viewlet-below-title" tal:content="structure provider:plone.belowcontenttitle" />
+	
+    <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontentbody" />
+    <div tal:content="structure provider:plone.portalfooter" />
+
+    </tal:main-macro>
+</metal:main>
+</body>
+</html>
+

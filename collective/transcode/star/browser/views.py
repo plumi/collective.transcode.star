@@ -2,7 +2,7 @@ from Products.Five.browser import BrowserView
 from collective.transcode.star.interfaces import ICallbackView, ITranscodeTool
 from zope.interface import implements
 from zope.component import getUtility
-from crypto import encrypt, decrypt
+from collective.transcode.star.crypto import encrypt, decrypt
 from base64 import b64encode, b64decode
 import logging
 
@@ -14,6 +14,20 @@ except ImportError:
 
 log = logging.getLogger('collective.transcode')
 
+class EmbedView(BrowserView):
+    """
+        Embedded video vew
+    """
+    def jpeg(self):
+        tt = getUtility(ITranscodeTool)
+        uid = self.context.UID()
+        try:
+            return tt[uid][tt[uid].keys()[0]]['jpeg']['address'] + '/' + \
+                    tt[uid][tt[uid].keys()[0]]['jpeg']['path']
+        except:
+            return False
+        
+    
 class CallbackView(BrowserView):
     """
         Handle callbacks and errbacks from transcode daemon

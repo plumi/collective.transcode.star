@@ -1,0 +1,79 @@
+<video id="main-video" controls width="525" height="300"
+    tal:define="mp4 string:${view/profiles/mp4-low/address|nothing}/${view/profiles/mp4-low/path|nothing};
+                webm string:${view/profiles/webm-low/address|nothing}/${view/profiles/webm-low/path|nothing};
+                jpeg string:${view/profiles/jpeg/address|nothing}/${view/profiles/jpeg/path|nothing}"
+    tal:attributes="poster jpeg"
+    controls="controls" preload="none">
+   <source tal:condition="view/profiles/webm-low/path|view/profiles/webm-high/path|nothing" tal:attributes="src webm" type="video/webm" />
+   <source tal:condition="view/profiles/mp4-low/path|view/profiles/mp4-high/path|nothing" tal:attributes="src mp4" type="video/mp4" />
+   <object tal:condition="view/profiles/mp4-low/path|view/profiles/mp4-high/path|nothing"
+           width="525" height="300" type="application/x-shockwave-flash" data="++resource++collective.mediaelementjs/flashmediaelement.swf">
+       <param name="movie" value="++resource++collective.mediaelementjs/flashmediaelement.swf" />
+       <param name="flashvars" tal:attributes="value string:controls=true&poster=${jpeg}&file=${mp4}" />
+       <!-- Image as a last resort -->
+       <img tal:attributes="src jpeg" width="525" height="300" title="No video playback capabilities" />
+   </object>
+</video>
+<div style="width: 525px; font-size:75%; margin-top:35px;">        
+    <textarea style="height: 20px" rows="1" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view' frameborder='0' width='535' height='400'></iframe>" /></textarea>
+</div>
+<div tal:condition="view/profiles/webm-high/path|nothing" class="discreet">
+    <div style="display:none" id="player-low"><a>view in standard quality</a></div> <div id="player-high"><a>view in high quality</a></div>
+</div>             
+<script>
+$('video#main-video').mediaelementplayer();
+
+var player = $('video#main-video').mediaelementplayer()[0].player;
+event = Event;
+</script>
+
+<script tal:condition="view/profiles/webm-high/path|nothing" language="JavaScript" tal:content="string:$(function(){
+    $('#player-low').click(function () {
+        createCookie('videores', 'low');
+        jq('#player-high')[0].style.display = ''; 
+        jq('#player-low')[0].style.display = 'none';
+        var extension = $('video')[0].currentSrc.split('.')[$('video')[0].currentSrc.split('.').length -1];
+        if (extension == 'webm') {
+            player.setSrc('${view/profiles/webm-low/address|nothing}/${view/profiles/webm-low/path|nothing}');
+        } else {
+            player.setSrc('${view/profiles/mp4-low/address|nothing}/${view/profiles/mp4-low/path|nothing}');
+        }
+        player.play();
+        setTimeout(getDownCount,10000);
+        return false
+    });
+    
+    $('#player-high').click(function () {
+        setCookie('videores', 'high');
+        jq('#player-high')[0].style.display = 'none';
+        jq('#player-low')[0].style.display = '';
+        var extension = $('video')[0].currentSrc.split('.')[$('video')[0].currentSrc.split('.').length -1];
+        if (extension == 'webm') {
+            player.setSrc('${view/profiles/webm-high/address|nothing}/${view/profiles/webm-high/path|nothing}');
+        } else {
+            player.setSrc('${view/profiles/mp4-high/address|nothing}/${view/profiles/mp4-high/path|nothing}');
+        }
+        player.play();
+        setTimeout(getDownCount,10000);
+        return false
+    });
+       
+});">
+</script>
+
+<script type="text/javascript" src="http://s3.www.universalsubtitles.org/js/unisubs-widgetizer.js"></script>
+<script type="text/javascript">
+// Fullscreen video width fix (unisubs/mediaelementjs conflict)
+$('.mejs-fullscreen-button button').live('click',function(){
+    $('#main-video').attr('style','');
+    if ($(this).parent().hasClass('mejs-unfullscreen')) {
+        $('span.unisubs-captionSpan').css('margin-top','auto');
+        $('span.unisubs-captionSpan').css('margin-left','40%');
+        $('span.unisubs-captionSpan').css('margin-right','auto');
+        $('span.unisubs-captionSpan').css('margin-bottom','40px');
+    } else {
+        $('span.unisubs-captionSpan').css('margin-top','0');
+        $('span.unisubs-captionSpan').css('margin-left','0');
+    }
+});
+</script>
