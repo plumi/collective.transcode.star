@@ -114,8 +114,7 @@ class TranscodeTool(BTreeContainer):
                 objRec = self.get(UID, None)
                 if not objRec:
                     self[UID] = PersistentDict()
-                else:
-                    log.info(u"object at %s already exists in TranscodeTool" % obj.absolute_url())
+                    log.info(u"adding object %s in TranscodeTool" % obj.absolute_url())
 
                 fieldRec = self[UID].get(fieldName, None)
                 if not fieldRec: 
@@ -138,11 +137,31 @@ class TranscodeTool(BTreeContainer):
 
         return
 
+    def getProgress(self, jobId):
+        """
+            Get transcoding progress
+        """
+        tt = getUtility(ITranscodeTool)
+        
+        try:
+            address = tt.getNextDaemon()
+        except Exception, e:
+            log.error(u"Can't get daemon address %s" % e)
+            return
+
+        try:
+            transcodeServer = xmlrpclib.ServerProxy(address)
+            progress = transcodeServer.stat(jobId)
+        except Exception, e:
+            log.error(u"Could not connect to transcode daemon %s: %s" % (address, e))
+            return
+        return progress
+        
     def delete(self, obj, fieldNames = [], force = False):
         '''Pass an xmlrpc call to the daemon when a video is deleted'''
 
         UID = obj.UID()
-        log = logging.getLogger('plumi.content.subscribers')
+        log = logging.getLogger('collective.transcode.star')
         tt = getUtility(ITranscodeTool)
 
         # If no fieldNames have been defined as transcodable, then use the primary field
