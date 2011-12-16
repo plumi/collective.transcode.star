@@ -41,7 +41,6 @@ event = Event;
             player.setSrc('${view/profiles/mp4-low/address|nothing}/${view/profiles/mp4-low/path|nothing}');
         }
         player.play();
-        setTimeout(getDownCount,10000);
         return false
     });
     
@@ -56,7 +55,6 @@ event = Event;
             player.setSrc('${view/profiles/mp4-high/address|nothing}/${view/profiles/mp4-high/path|nothing}');
         }
         player.play();
-        setTimeout(getDownCount,10000);
         return false
     });
        
