@@ -1,6 +1,23 @@
 Changelog
 ---------
 
+0.11 (2011-12-17)
+~~~~~~~~~~~~~~~~~
+
+ - bug fix in controlpanel's interface [giacomos]
+ - moved repo to github [garbas]
+ - use html5/mediaelementjs for video playback, drop flowplayer [dimo, clopy, cpsaltis]
+ - update buildout, transcoding scripts, add ffmpeg [cpsaltis, dimo]
+ - enable switching to hi/low quality [dimo, clopy]
+ - provide embed code [dimo, clopy]
+ - track transcoding progress [dimo]
+ - support opensubtitles [dimo, clopy] 
+
+0.10 (2011-05-10)
+~~~~~~~~~~~~~~~~~
+
+ - update bootstrap.py [dimo]
+ 
 0.9 (2011-03-29)
 ~~~~~~~~~~~~~~~~
 
