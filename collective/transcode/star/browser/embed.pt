@@ -19,6 +19,11 @@
     </style>
     <div tal:replace="structure provider:plone.htmlhead" />
     <link tal:replace="structure provider:plone.htmlhead.links" />
+    <style>
+    body {background-color: transparent !important; background-image: none; overflow:hidden !important;}
+    div.embed-box{display:none;}
+    div.RatingViewlet {margin-top: -13px;}
+    </style>
 </head>
 
 <body>
