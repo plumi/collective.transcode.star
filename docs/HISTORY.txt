@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+0.13 (2011-12-21)
+~~~~~~~~~~~~~~~~~
+
+ - preload video metadata, fixes universal subtitles widget display issue [dimo]
+
 0.12 (2011-12-18)
 ~~~~~~~~~~~~~~~~~
 
