@@ -16,6 +16,8 @@
     </tal:block>
     <style>
     #portal-footer, #portal-siteactions, #portal-colophon, #plone-document-byline { display: none; }
+    body {background-color: transparent !important; background-image: none}
+    div.embed-box{display:none;}
     </style>
     <div tal:replace="structure provider:plone.htmlhead" />
     <link tal:replace="structure provider:plone.htmlhead.links" />

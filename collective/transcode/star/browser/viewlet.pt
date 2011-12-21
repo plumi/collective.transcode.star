@@ -3,7 +3,7 @@
                 webm string:${view/profiles/webm-low/address|nothing}/${view/profiles/webm-low/path|nothing};
                 jpeg string:${view/profiles/jpeg/address|nothing}/${view/profiles/jpeg/path|nothing}"
     tal:attributes="poster jpeg"
-    controls="controls" preload="none">
+    controls="controls" preload="metadata">
    <source tal:condition="view/profiles/webm-low/path|view/profiles/webm-high/path|nothing" tal:attributes="src webm" type="video/webm" />
    <source tal:condition="view/profiles/mp4-low/path|view/profiles/mp4-high/path|nothing" tal:attributes="src mp4" type="video/mp4" />
    <object tal:condition="view/profiles/mp4-low/path|view/profiles/mp4-high/path|nothing"
@@ -17,9 +17,9 @@
 <div tal:condition="view/profiles/webm-high/path|nothing" class="discreet" style="float:right">
     <div style="display:none" id="player-low"><a>view in standard quality</a></div> <div id="player-high"><a rel="link">view in high quality</a></div>
 </div> 
-<div style="width: 525px; font-size:75%; margin-top:35px; margin-bottom: 20px;" class="embed-box">
-    <span class="discreet">Embed
-        <textarea style="height: 25px;" rows="1" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view' frameborder='0' width='525' height='345'></iframe>" /></textarea>
+<div style="width: 525px; font-size:75%; margin-top:35px; margin-bottom: 20px;">
+    <span class="discreet">embed
+        <textarea style="height: 25px;" rows="1" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view' frameborder='0' width='545' height='400'></iframe>" /></textarea>
     </span>
 </div>         
 <script>
