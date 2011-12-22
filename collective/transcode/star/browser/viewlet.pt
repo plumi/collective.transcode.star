@@ -1,7 +1,7 @@
 <video id="main-video" controls width="525" height="300"
     tal:define="mp4 string:${view/profiles/mp4-low/address|nothing}/${view/profiles/mp4-low/path|nothing};
                 webm string:${view/profiles/webm-low/address|nothing}/${view/profiles/webm-low/path|nothing};
-                jpeg string:${view/profiles/jpeg/address|nothing}/${view/profiles/jpeg/path|nothing}"
+                jpeg view/context/thumbnailImage/absolute_url|string:${view/profiles/jpeg/address|nothing}/${view/profiles/jpeg/path|nothing}"
     tal:attributes="poster jpeg"
     controls="controls" preload="metadata">
    <source tal:condition="view/profiles/webm-low/path|view/profiles/webm-high/path|nothing" tal:attributes="src webm" type="video/webm" />
