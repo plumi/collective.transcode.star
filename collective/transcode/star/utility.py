@@ -73,7 +73,9 @@ class TranscodeTool(BTreeContainer):
                 continue
             for field in fields:
                 fieldName = field.getName()
-                if field.getContentType(obj) not in self.supported_mime_types():
+                fileType = field.getContentType(obj)
+                if fileType not in self.supported_mime_types():
+                    log.warn('skipping %s: %s not in %s' %(obj, fileType, self.supported_mime_types()))
                     continue
                 data = StringIO(field.get(obj).data)
                 md5sum = md5(data.read()).hexdigest()
