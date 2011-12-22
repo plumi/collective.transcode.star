@@ -15,7 +15,7 @@
         <link rel="image_src" tal:condition="view/jpeg" tal:attributes="href view/jpeg" />
     </tal:block>
     <style>
-    #portal-footer, #portal-siteactions, #portal-colophon, #plone-document-byline { display: none; }
+    #portal-footer, #portal-siteactions, #portal-colophon, #plone-document-byline, .documentByLine { display: none; }
     body {background-color: transparent !important; background-image: none}
     div.embed-box{display:none;}
     </style>
