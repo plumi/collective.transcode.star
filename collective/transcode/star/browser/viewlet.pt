@@ -18,8 +18,8 @@
     <div style="display:none" id="player-low"><a>view in standard quality</a></div> <div id="player-high"><a rel="link">view in high quality</a></div>
 </div> 
 <div style="width: 525px; font-size:75%; margin-top:35px; margin-bottom: 20px;" class="embed-box">
-    <span class="discreet">embed
-        <textarea style="height: 25px;" rows="1" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view' frameborder='0' width='545' height='400'></iframe>" /></textarea>
+    <span class="discreet">Embed
+        <textarea style="height: 45px;" rows="1" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view' frameborder='0' width='545' height='400'></iframe>" /></textarea>
     </span>
 </div>         
 <script>
@@ -27,7 +27,7 @@ var isInIframe = (window.location != window.parent.location) ? true : false;
 if (isInIframe){
     var v = $('video#main-video');
     v.width(v.parent().width());
-    v.height(v.parent().height());
+    v.height(v.parent().height() - 90);
 }
 
 $('video#main-video').mediaelementplayer();
