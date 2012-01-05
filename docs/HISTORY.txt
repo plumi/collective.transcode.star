@@ -1,6 +1,16 @@
 Changelog
 ---------
 
+0.14 (2012-01-05)
+~~~~~~~~~~~~~~~~~
+
+ - add video/x-matroska to supported mimetypes [dimo]
+ - improve embed view display & fix embed dimensions [dimo]
+ - warn when skipping transcoding due to unsupported mimetype [dimo]
+ - embed view should use the dimensions of the parent iframe [dimo]
+ - look for thumbnail in content type first [dimo]
+
+
 0.13 (2011-12-21)
 ~~~~~~~~~~~~~~~~~
 
