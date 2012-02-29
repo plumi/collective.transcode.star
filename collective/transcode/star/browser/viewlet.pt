@@ -83,3 +83,14 @@ $('.mejs-fullscreen-button button').live('click',function(){
     }
 });
 </script>
+
+<script>
+//if in iframe, show view on original site logo
+if (isInIframe){
+    var orig_url = window.location.href.split('/embed_view')[0];
+    var host_url = window.location.host;
+    var watermark_code = '<div class="mejs-button mejs-link-button"> <a target="_blank" href="' + orig_url + '"> <button style="background: url(favicon.ico); right:2px; top:0px;" title="View/Download on ' + host_url + '" aria-controls="mep_0" type="button">< /button> < /a> < /div>';
+ $('.mejs-controls').append(watermark_code);
+}
+</script>
+
