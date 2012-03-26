@@ -18,6 +18,7 @@
     #portal-footer, #portal-siteactions, #portal-colophon, #plone-document-byline, #viewlet-below-title .documentByLine { display: none !important; }
     body {background-color: transparent !important; background-image: none}
     div.embed-box{display:none;}
+    div.unisubs-dropdown{margin-top: -345px !important;}
     </style>
     <div tal:replace="structure provider:plone.htmlhead" />
     <link tal:replace="structure provider:plone.htmlhead.links" />
