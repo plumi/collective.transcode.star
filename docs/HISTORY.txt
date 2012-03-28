@@ -1,6 +1,12 @@
 Changelog
 ---------
 
+0.15 (2012-03-28)
+~~~~~~~~~~~~~~~~~
+
+ - Fix subtitle selection on embedded videos [clopy]
+ - Add 'view on original site logo' for embeded videos [mgogoulos]
+
 0.14 (2012-01-05)
 ~~~~~~~~~~~~~~~~~
 
