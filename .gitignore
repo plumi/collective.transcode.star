@@ -1,6 +1,8 @@
 *.py?
 .installed.cfg
 .mr.developer.cfg
+.project
+.pydevproject
 collective.transcode.star.egg-info/
 bin/
 develop-eggs/
