@@ -82,9 +82,7 @@ $('.mejs-fullscreen-button button').live('click',function(){
         $('span.unisubs-captionSpan').css('margin-left','0');
     }
 });
-</script>
 
-<script>
 //if in iframe, show view on original site logo
 if (isInIframe){
     var orig_url = window.location.href.split('/embed_view')[0];
