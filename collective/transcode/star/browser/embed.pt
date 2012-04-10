@@ -27,6 +27,12 @@
     div.embed-box{display:none;}
     div.RatingViewlet {margin-top: -13px; display: none}
     </style>
+    <script type="text/javascript">
+        function fixtarget() {
+            $('.unisubs-tabTextShare').parent().attr('target', '_blank');
+        };
+        setInterval('fixtarget()',1000);
+    </script>
 </head>
 
 <body>
