@@ -28,6 +28,7 @@
     div.RatingViewlet {margin-top: -13px; display: none}
     </style>
     <script type="text/javascript">
+        var isInIframe = (window.location != window.parent.location) ? true : false;
         function fixtarget() {
             $('.unisubs-tabTextShare').parent().attr('target', '_blank');
         };
@@ -46,6 +47,15 @@
 
     </tal:main-macro>
 </metal:main>
+<script type="text/javascript">
+    //if in iframe, show view on original site logo
+    if (isInIframe){
+        var orig_url = window.location.href.split('/embed_view')[0];
+        var host_url = window.location.host;
+        var watermark_code = '<div class="mejs-button mejs-link-button"> <a target="_blank" href="' + orig_url + '"> <button style="background: url(favicon.ico) center no-repeat; right:-8px; top:-8px; height: 32px; width:32px;" title="View/Download on ' + host_url + '" aria-controls="mep_0" type="button">< /button> < /a> < /div>';
+     $('.mejs-controls').append(watermark_code);
+    }
+</script>
 </body>
 </html>
 
