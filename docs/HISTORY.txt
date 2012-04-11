@@ -1,6 +1,12 @@
 Changelog
 ---------
 
+0.16 (2012-04-11)
+~~~~~~~~~~~~~~~~~
+
+ - move embed favicon code to embed.pt [clopy]
+ - open unisubs share link in new tab [clopy]
+ 
 0.15 (2012-03-28)
 ~~~~~~~~~~~~~~~~~
 
