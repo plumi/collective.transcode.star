@@ -1,18 +1,17 @@
-from collective.transcode.star.interfaces import ITranscodeTool, ITranscoded, ITranscodedEvent
-from hashlib import md5
-from zope.app.container.btree import BTreeContainer
 import xmlrpclib
-from zope.component import getUtility
 import urllib
 import logging
+import pytz
+from hashlib import md5
+from urllib import urlencode
+from datetime import datetime, timedelta
+from base64 import b64encode
+import transaction
+
 from plone.registry.interfaces import IRegistry
 from persistent.dict import PersistentDict
 from collective.transcode.star.crypto import encrypt, decrypt
 from Products.CMFCore.utils import getToolByName
-from urllib import urlencode
-from datetime import datetime
-from base64 import b64encode
-import transaction
 from zope.interface import alsoProvides, noLongerProvides
 from StringIO import StringIO
 from zope.interface import implements
@@ -20,10 +19,30 @@ from zope.component import getSiteManager
 from zope.component.interfaces import ObjectEvent
 from zope.event import notify
 
-from zope.component import queryUtility
+from zope.component import queryUtility, getUtility
 from plone.i18n.normalizer.interfaces import IIDNormalizer
+from zope.app.container.btree import BTreeContainer
+from plone.app.async.interfaces import IAsyncService
 
+from collective.transcode.star.interfaces import ITranscodeTool, ITranscoded, ITranscodedEvent
 log = logging.getLogger('collective.transcode')
+
+def transcode_request(obj, fieldName, UID, payload, secret, address, profile, options, portal_url): 
+    "Encrypt and send the transcode request"
+    try:
+        transcodeServer = xmlrpclib.ServerProxy(address, allow_none=True)
+    except Exception, e:
+        log.error(u"Could not connect to transcode daemon %s: %s" % (address, e))
+        return
+    payload = {'key':b64encode(encrypt(str(payload), secret))}
+    jobId = transcodeServer.transcode(payload, profile, options, portal_url)
+    tt = getUtility(ITranscodeTool)
+    if not jobId or jobId.startswith('ERROR'):
+        log.warn(u'Could not get jobId from daemon %s for profile %s and input %s. Result %s' % (address, profile, payload, jobId))
+        tt[UID][fieldName][profile]['status'] = jobId or 'failed'
+    tt[UID][fieldName][profile]['jobId'] = jobId
+    log.info(u"added profile %s for field %s and content type %s in transcode queue" % ( profile, fieldName, obj.absolute_url()))
+
 
 class TranscodeTool(BTreeContainer):
     
@@ -33,7 +52,6 @@ class TranscodeTool(BTreeContainer):
         """
            Add a portal object to the transcode queue
         """
-
         UID = obj.UID()
         # If no fieldNames have been defined as transcodable, then use the primary field
         # TODO: check if they are actually file fields
@@ -103,7 +121,7 @@ class TranscodeTool(BTreeContainer):
                 fileName = norm.normalize(fileName.decode('utf-8'))
 
                 options = dict()
-                input = {
+                payload = {
                           'path' : filePath,
                           'url' : fileUrl,
                           'type' : fileType,
@@ -123,20 +141,16 @@ class TranscodeTool(BTreeContainer):
                     self[UID][fieldName]=PersistentDict()
                 self[UID][fieldName][profile] = PersistentDict({'jobId' : None, 'address' : address, 'status' : 'pending', 'start' : datetime.now(), 'md5' : md5sum})
                 
-                # We have to commit the transaction to make sure the file can be fetched by the transcode daemon
-                transaction.commit()
 
-                # Encrypt and send the transcode request
-                input = {'key':b64encode(encrypt(str(input), secret))}
-                jobId = transcodeServer.transcode(input, profile, options, portal_url)
-                if not jobId or jobId.startswith('ERROR'):
-                    log.warn(u'Could not get jobId from daemon %s for profile %s and input %s. Result %s' % (address, profile, input, jobId))
-                    self[UID][fieldName][profile]['status'] = jobId or 'failed'
-                    continue
-                self[UID][fieldName][profile]['jobId'] = jobId
+                #from zope.app.component.hooks import getSite
+                #request = getSite().REQUEST
+                #if request.has_key('video_file_file') and request.has_key('form.button.save'):
+                ## We have to commit the transaction to make sure the file can be fetched by the transcode daemon
+                #    transaction.commit()
 
-                log.info(u"added profile %s for field %s and content type %s in transcode queue" % ( profile, fieldName, obj.absolute_url()))
-
+                async = getUtility(IAsyncService)
+                temp_time = datetime.now(pytz.UTC) + timedelta(seconds=2)
+                job = async.queueJob(transcode_request, obj, fieldName, UID, payload, secret, address, profile, options, portal_url, begin_after=temp_time)
         return
 
     def getProgress(self, jobId):
@@ -208,7 +222,7 @@ class TranscodeTool(BTreeContainer):
             fileName = norm.normalize(fileName.decode('utf-8'))
 
             options = dict()
-            input = {
+            payload = {
                       'path' : filePath,
                       'url' : fileUrl,
                       'type' : fileType,
@@ -218,8 +232,8 @@ class TranscodeTool(BTreeContainer):
                     }
 
             # Encrypt and send the transcode request
-            input = {'key':b64encode(encrypt(str(input), secret))}
-            transcodeServer.delete(input, options, portal_url)
+            payload = {'key':b64encode(encrypt(str(payload), secret))}
+            transcodeServer.delete(payload, options, portal_url)
             tt.__delitem__ ( UID )
 
         return
