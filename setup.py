@@ -52,6 +52,7 @@ setup(name=name,
           # -*- Extra requirements: -*-
           'plone.app.registry',
           'plone.app.async',
+          'five.intid',
           'collective.mediaelementjs',
           'pycrypto',
       ],
