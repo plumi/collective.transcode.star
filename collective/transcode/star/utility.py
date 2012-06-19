@@ -27,8 +27,9 @@ from plone.app.async.interfaces import IAsyncService
 from collective.transcode.star.interfaces import ITranscodeTool, ITranscoded, ITranscodedEvent
 log = logging.getLogger('collective.transcode')
 
-def transcode_request(obj, fieldName, UID, payload, secret, address, profile, options, portal_url): 
+def transcode_request(obj, fieldName, UID, payload, secret, address, profile, options, portal_url, begin_after=None): 
     "Encrypt and send the transcode request"
+    #begin_after is a foo variable, needed for backward compatibility with plone.app.async
     try:
         transcodeServer = xmlrpclib.ServerProxy(address, allow_none=True)
     except Exception, e:
