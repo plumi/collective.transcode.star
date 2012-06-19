@@ -74,9 +74,17 @@ Plone 3.3.5
 
 Usage
 -----
+Start zeo::
+
+    ./bin/zeoserver start
+
 Start the transcode daemon::
 
     ./bin/transcodedaemon start # or fg to start it in the foreground
+
+Start the worker instance::
+
+    ./bin/worker start
 
 Start Zope::
 
