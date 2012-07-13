@@ -58,19 +58,12 @@ In Ubuntu 10.04 you can install the above using the following commands:
 Installation
 ------------
 
-Plone 4.0
+Plone 4.x
 ~~~~~~~~~
 ::
 
     python2.6 bootstrap.py
     ./bin/buildout
-
-Plone 3.3.5
-~~~~~~~~~~~
-::
-
-    python2.4 bootstrap.py -c buildout-p3.cfg
-    ./bin/buildout -c buildout-p3.cfg
 
 Usage
 -----

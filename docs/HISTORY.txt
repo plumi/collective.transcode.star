@@ -5,6 +5,8 @@ Changelog
 ~~~~~~~~~~~~~~~~~
 
  - transcode jobs executed asynchronously if plone.app.async is available [dimo, mgogoulos]
+ - update to Plone 4.2 [dimo]
+ - drop support for Plone 3.x [dimo]
 
 0.16 (2012-04-11)
 ~~~~~~~~~~~~~~~~~

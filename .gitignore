@@ -8,6 +8,7 @@ bin/
 develop-eggs/
 downloads/
 eggs/
+dist/
 include/
 lib/
 parts/
