@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+0.18 (2012-07-23)
+~~~~~~~~~~~~~~~~~
+
+ - init mediaelementjs player in an iOS friendly way [dimo]
+
 0.17 (2012-07-12)
 ~~~~~~~~~~~~~~~~~
 
