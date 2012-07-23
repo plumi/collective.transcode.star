@@ -30,8 +30,7 @@ if (isInIframe){
     v.height($(window).height() - 100);
 }
 
-$('video#main-video').mediaelementplayer();
-var player = $('video#main-video').mediaelementplayer()[0].player;
+var player = new MediaElementPlayer('video#main-video');
 event = Event;
 </script>
 
