@@ -20,33 +20,47 @@
         height:29px; 
         background: url('++resource++collective.transcode.images/gradient_light.png') repeat-x scroll 0 0 #333333 !important
     }
+    
     div.videobar span {
         padding: 8px 12px 8px 9px; 
         border-left: 1px solid #666666 !important;
     }
+    
+    div#share-box a{
+        border-bottom-width: 0px !important;
+    }
+    
+    div#share-box ul {
+        float: right;
+    }
+    
     div.videobar a {
         color: #FFFFFF; 
         font-size: 13px
     }
+    
     div.videobar a:hover span{
         background: none repeat scroll 0 0 #333333 !important;
         text-decoration: underline;
         color: #FFFFFF !important; 
     }
-    div.videobar div {
+    
+    div.videobar > div {
         float:right; 
         padding:4px; 
         height:29px;
     }
+    
     div.embed-box {
-        width: 630px; 
-        font-size:75%; 
-        margin-top:35px; 
-        margin-bottom: 20px;
+        font-size:75%;
+        display: block;
+        clear: left;
     }
+    
     div.embed-box textarea {
-        height: 45px;
+        height: 25px;
     }
+    
     ul#dl-links{
         position: relative;
         left: 390px;
@@ -57,6 +71,23 @@
         padding: 10px;
     }
     
+    div#share-box{
+        position: relative;
+        left: 200px;
+        top: 30px;
+        background: none repeat scroll 0 0 #333333 !important;
+        z-index: 10;
+        padding: 10px;
+        width:300px;
+        height:45px;
+        color: #fff;
+    }
+    
+    div#share-box li{
+        list-style: none;
+        display: inline;
+    }
+        
     ul#dl-links li {
         list-style: none;
         display: block;
@@ -73,6 +104,11 @@
         color: #fff !important;
 
     }
+    
+    div.unisubs-videoTab a span.unisubs-tabTextShare { 
+        display: none !important; 
+    }
+    
 </style>
 <div class="videobar">
     <div class="hi-lo" tal:condition="view/profiles/webm-high/path|nothing">
@@ -86,6 +122,11 @@
     <div class="download">
         <a id="download">
             <span>Download</span>
+        </a>
+    </div>
+    <div class="share">
+        <a id="share">
+            <span>Share</span>
         </a>
     </div>
 
@@ -108,13 +149,21 @@
                webm high res</a>
        </li>
     </ul>
+    
+    <div id="share-box" style="display:none">
+        <ul>
+            <li><a target="_self" href="https://twitter.com/share" class="twitter-share-button" data-lang="en"><img src="++resource++collective.transcode.images/twitter.png" /></a></li>
+            <li><a target="_self" href="http://www.facebook.com/sharer.php" target="_blank"><img src="++resource++collective.transcode.images/facebook.png" /></a></li>
+            <li><a class="unisubs" style="display:none" target="_self"><img src="++resource++collective.transcode.images/unisubs.png" /></a></li>
+        </ul>
+        <div class="embed-box">
+            Embed
+            <textarea rows="1" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view' frameborder='0' width='630' height='460'></iframe>" /></textarea>
+        </div>         
+    </div>
 </div>
 
-<div style="" class="embed-box">
-    <span class="discreet">Embed
-        <textarea rows="1" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view' frameborder='0' width='630' height='460'></iframe>" /></textarea>
-    </span>
-</div>         
+        
 <script>
 var isInIframe = (window.location != window.parent.location) ? true : false;
 if (isInIframe){
@@ -128,11 +177,29 @@ event = Event;
 
 
 $('div.download').mouseenter(
-    function(){$('#dl-links').show()}
+    function(){
+        $('#share-box').hide();
+        $('#dl-links').show();
+    }
+);
+
+$('div.share').mouseenter(
+    function(){
+        $('#dl-links').hide();
+        $('#share-box').show();
+        var unisubs_url = $('.unisubs-tabTextShare').parent().attr('href');
+        if (unisubs_url){
+            $('#share-box a.unisubs').attr('href',unisubs_url);
+            $('#share-box a.unisubs').show();
+        }
+    }      
 );
 
 $('div.videobar').mouseleave(
-    function(){$('#dl-links').fadeOut(500)}
+    function(){
+        $('#dl-links').fadeOut(500);
+        $('#share-box').fadeOut(500)
+    }    
 );
 
 </script>
