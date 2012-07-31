@@ -31,7 +31,8 @@
     }
     
     div#share-box ul {
-        float: right;
+        float: left;
+        margin: 0;
     }
     
     div.videobar a {
@@ -53,12 +54,14 @@
     
     div.embed-box {
         font-size:75%;
-        display: block;
-        clear: left;
+        display: inline;
+        float: right;
     }
     
     div.embed-box textarea {
-        height: 25px;
+        height: 40px;
+        display: inline;
+        width: 215px !important;
     }
     
     ul#dl-links{
@@ -73,13 +76,13 @@
     
     div#share-box{
         position: relative;
-        left: 200px;
+        left: 284px;
         top: 30px;
         background: none repeat scroll 0 0 #333333 !important;
         z-index: 10;
         padding: 10px;
-        width:300px;
-        height:45px;
+        width:310px;
+        height:40px;
         color: #fff;
     }
     
@@ -151,15 +154,14 @@
     </ul>
     
     <div id="share-box" style="display:none">
+        <div class="embed-box">
+            Embed <textarea rows="1" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view' frameborder='0' width='630' height='460'></iframe>" /></textarea>
+        </div>
         <ul>
             <li><a target="_self" href="https://twitter.com/share" class="twitter-share-button" data-lang="en"><img src="++resource++collective.transcode.images/twitter.png" /></a></li>
             <li><a target="_self" href="http://www.facebook.com/sharer.php" target="_blank"><img src="++resource++collective.transcode.images/facebook.png" /></a></li>
             <li><a class="unisubs" style="display:none" target="_self"><img src="++resource++collective.transcode.images/unisubs.png" /></a></li>
-        </ul>
-        <div class="embed-box">
-            Embed
-            <textarea rows="1" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view' frameborder='0' width='630' height='460'></iframe>" /></textarea>
-        </div>         
+        </ul>        
     </div>
 </div>
 
