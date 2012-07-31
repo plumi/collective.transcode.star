@@ -4,6 +4,12 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="collective.transcode">
     
+  <!-- Resource directory for images -->
+  <browser:resourceDirectory
+      name="collective.transcode.images"
+      directory="images"
+      />
+
   <browser:page
       name="transcode-controlpanel"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"

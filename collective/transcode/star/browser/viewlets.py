@@ -12,6 +12,7 @@ class TranscodeViewlet(ViewletBase):
         uid = self.context.UID()
 
         try:
+            self.fieldname = tt[uid].keys()[0]
             self.profiles = tt[uid][tt[uid].keys()[0]]
         except KeyError:
             pass
