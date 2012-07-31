@@ -59,6 +59,7 @@
     
     ul#dl-links li {
         list-style: none;
+        display: block;
     }
     
     ul#dl-links a {
