@@ -1,29 +1,38 @@
-<video id="main-video" controls width="630" height="360"
+<tal:video tal:define="width view/request/width|python:630;
+                       height python:int(int(width)/1.75);">
+<video id="main-video" controls
     tal:define="mp4 string:${view/profiles/mp4-low/address|nothing}/${view/profiles/mp4-low/path|nothing};
                 webm string:${view/profiles/webm-low/address|nothing}/${view/profiles/webm-low/path|nothing};
                 jpeg view/context/thumbnailImage/absolute_url|string:${view/profiles/jpeg/address|nothing}/${view/profiles/jpeg/path|nothing}"
-    tal:attributes="poster jpeg"
+    tal:attributes="poster jpeg; width width; height height"
     controls="controls" preload="metadata">
-   <source tal:condition="view/profiles/webm-low/path|view/profiles/webm-high/path|nothing" tal:attributes="src webm" type="video/webm" />
-   <source tal:condition="view/profiles/mp4-low/path|view/profiles/mp4-high/path|nothing" tal:attributes="src mp4" type="video/mp4" />
-   <object tal:condition="view/profiles/mp4-low/path|view/profiles/mp4-high/path|nothing"
-           width="630" height="360" type="application/x-shockwave-flash" data="++resource++collective.mediaelementjs/flashmediaelement.swf">
+   <source tal:condition="view/profiles/webm-low/path|view/profiles/webm-high/path|nothing" 
+       tal:attributes="src webm" type="video/webm" />
+   <source tal:condition="view/profiles/mp4-low/path|view/profiles/mp4-high/path|nothing" 
+       tal:attributes="src mp4" type="video/mp4" />
+   <object tal:condition="view/profiles/mp4-low/path|view/profiles/mp4-high/path|nothing" 
+       tal:attributes="width width; height height" 
+       type="application/x-shockwave-flash" 
+       data="++resource++collective.mediaelementjs/flashmediaelement.swf">
        <param name="movie" value="++resource++collective.mediaelementjs/flashmediaelement.swf" />
        <param name="flashvars" tal:attributes="value string:controls=true&poster=${jpeg}&file=${mp4}" />
        <!-- Image as a last resort -->
-       <img tal:attributes="src jpeg" width="630" height="360" title="No video playback capabilities" />
+       <img tal:attributes="src jpeg; width width; height height" title="No video playback capabilities" />
    </object>
 </video>
+<style tal:content="string: div.videobar{width: ${width}px}" />
 <style>
     div.videobar {
-        width:630px; 
+        position: relative;
         height:29px; 
         background: url('++resource++collective.transcode.images/gradient_light.png') repeat-x scroll 0 0 #333333 !important
     }
     
     div.videobar span {
-        padding: 8px 12px 8px 9px; 
+        padding: 7px 10px; 
         border-left: 1px solid #666666 !important;
+        position: relative;
+        top: 5px;
     }
     
     div#share-box a{
@@ -37,7 +46,7 @@
     
     div.videobar a {
         color: #FFFFFF; 
-        font-size: 13px
+        font-size: 13px;
     }
     
     div.videobar a:hover span{
@@ -46,9 +55,8 @@
         color: #FFFFFF !important; 
     }
     
-    div.videobar > div {
+    div.download, div.share, div.hi-lo {
         float:right; 
-        padding:4px; 
         height:29px;
     }
     
@@ -65,23 +73,25 @@
     }
     
     ul#dl-links{
-        position: relative;
-        left: 390px;
-        top: 30px;
+        clear:both;
+        position: absolute;
+        right: 0px;  
+        top: 29px;      
         background: none repeat scroll 0 0 #333333 !important;
         z-index: 1;
-        width: 100px;
+        width: 181px;
         padding: 10px;
     }
     
     div#share-box{
-        position: relative;
-        left: 284px;
-        top: 30px;
+        position: absolute;
+        right: 0px;
+        top: 29px;
+        clear:both;
         background: none repeat scroll 0 0 #333333 !important;
         z-index: 10;
         padding: 10px;
-        width:310px;
+        width:315px;
         height:40px;
         color: #fff;
     }
@@ -255,3 +265,4 @@ $('.mejs-fullscreen-button button').live('click',function(){
 });
 </script>
 
+</tal:video>
