@@ -26,6 +26,15 @@ class EmbedView(BrowserView):
                     tt[uid][tt[uid].keys()[0]]['jpeg']['path']
         except:
             return False
+
+    def profiles(self):
+        tt = getUtility(ITranscodeTool)
+        uid = self.context.UID()
+        try:
+            return tt[uid][tt[uid].keys()[0]]
+        except:
+            return []
+
         
     
 class CallbackView(BrowserView):
