@@ -58,6 +58,7 @@
     div.download, div.share, div.hi-lo {
         float:right; 
         height:29px;
+        z-index: 1000;
     }
     
     div.embed-box {
@@ -78,8 +79,8 @@
         right: 0px;  
         top: 29px;      
         background: none repeat scroll 0 0 #333333 !important;
-        z-index: 1;
-        width: 181px;
+        z-index: 1000;
+        width: 181px !important;
         padding: 10px;
     }
     
@@ -89,9 +90,9 @@
         top: 29px;
         clear:both;
         background: none repeat scroll 0 0 #333333 !important;
-        z-index: 10;
+        z-index: 1000;
         padding: 10px;
-        width:315px;
+        width:330px !important;
         height:40px;
         color: #fff;
     }
@@ -122,6 +123,9 @@
         display: none !important; 
     }
     
+    div.unisubs-videoTab-anchoring {
+       width: 150px !important;
+    }    
 </style>
 <div class="videobar">
     <div class="hi-lo" tal:condition="view/profiles/webm-high/path|nothing">
@@ -143,8 +147,8 @@
         </a>
     </div>
 
-    <ul id="dl-links" style="display:none">
-        <li><a tal:attributes="href string:${view/context/absolute_url}/at_download/${view/fieldname}">original</a></li>
+    <ul id="dl-links" style="display:none" tal:condition="view/fieldname|nothing">
+        <li><a tal:attributes="href string:${view/context/absolute_url}/at_download/${view/fieldname}">original (<tal:size tal:content="view/display_size" />)</a></li>
         <li><a tal:condition="view/profiles/mp4-low/address|nothing" 
                tal:attributes="href string:${view/profiles/mp4-low/address|nothing}/${view/profiles/mp4-low/path|nothing};">
                mp4 low res</a>
