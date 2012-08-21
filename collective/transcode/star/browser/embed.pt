@@ -56,6 +56,8 @@
         var host_url = window.location.host;
         var watermark_code = '<div class="mejs-button mejs-link-button"> <a target="_blank" href="' + orig_url + '"> <button style="background: url(favicon.ico) center no-repeat; right:-8px; top:-8px; height: 32px; width:32px;" title="View/Download on ' + host_url + '" aria-controls="mep_0" type="button">< /button> < /a> < /div>';
      $('.mejs-controls').append(watermark_code);
+     $('#portlets-footer').hide();
+     $('div.videobar span').css('top','-3px');
     }
 </script>
 </body>
