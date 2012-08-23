@@ -172,9 +172,9 @@
             Embed <textarea rows="1" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view' frameborder='0' width='630' height='460'></iframe>" /></textarea>
         </div>
         <ul>
-            <li><a target="_self" href="https://twitter.com/share" class="twitter-share-button" data-lang="en"><img src="++resource++collective.transcode.images/twitter.png" /></a></li>
-            <li><a target="_self" href="http://www.facebook.com/sharer.php" target="_blank"><img src="++resource++collective.transcode.images/facebook.png" /></a></li>
-            <li><a class="unisubs" style="display:none" target="_self"><img src="++resource++collective.transcode.images/unisubs.png" /></a></li>
+            <li><a tal:attributes="href string:http://www.twitter.com/share?url=${here/absolute_url}" target='_blank' class="twitter-share-button" data-lang="en"><img src="++resource++collective.transcode.images/twitter.png" /></a></li>
+            <li><a tal:attributes="href string:http://www.facebook.com/share.php?u=${here/absolute_url}" target='_blank'><img src='++resource++collective.transcode.images/facebook.png' /> </a></li>
+            <li><a class="unisubs" style="display:none" target="_blank"><img src="++resource++collective.transcode.images/unisubs.png" /></a></li>
         </ul>        
     </div>
 </div>
