@@ -172,7 +172,7 @@
             Embed <textarea rows="1" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view' frameborder='0' width='630' height='460'></iframe>" /></textarea>
         </div>
         <ul>
-            <li><a tal:attributes="href string:http://www.twitter.com/share?url=${here/absolute_url}" target='_blank' class="twitter-share-button" data-lang="en"><img src="++resource++collective.transcode.images/twitter.png" /></a></li>
+            <li><a tal:attributes="href string:http://www.twitter.com/share?url=${here/absolute_url}" target="_blank" class="twitter-share-button" data-lang="en"><img src="++resource++collective.transcode.images/twitter.png" /></a></li>
             <li><a tal:attributes="href string:http://www.facebook.com/share.php?u=${here/absolute_url}" target='_blank'><img src='++resource++collective.transcode.images/facebook.png' /> </a></li>
             <li><a class="unisubs" style="display:none" target="_blank"><img src="++resource++collective.transcode.images/unisubs.png" /></a></li>
         </ul>        
@@ -252,7 +252,7 @@ $('div.videobar').mouseleave(
 });">
 </script>
 
-<script type="text/javascript" src="http://s3.www.universalsubtitles.org/js/unisubs-widgetizer.js"></script>
+<script type="text/javascript" src="++resource++collective.transcode.js/unisubs-widgetizer.js"></script>
 <script type="text/javascript">
 // Fullscreen video width fix (unisubs/mediaelementjs conflict)
 $('.mejs-fullscreen-button button').live('click',function(){

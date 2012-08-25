@@ -10,6 +10,12 @@
       directory="images"
       />
 
+  <!-- Resource directory for js -->
+  <browser:resourceDirectory
+      name="collective.transcode.js"
+      directory="js"
+      />
+
   <browser:page
       name="transcode-controlpanel"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
