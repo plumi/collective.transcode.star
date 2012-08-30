@@ -53,6 +53,10 @@ class ITranscodeSettings(Interface):
                              default = u'1771d99931264d538e75eeb19da7d6a0',
                             )
 
+    subtitles = schema.Bool(title = u'Show subtitles',
+                             default = True,
+                            )
+
 class ITranscodeTool(Interface):
     """TranscodeTool interface"""
 

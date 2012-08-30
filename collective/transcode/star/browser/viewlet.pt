@@ -252,7 +252,7 @@ $('div.videobar').mouseleave(
 });">
 </script>
 
-<script type="text/javascript" src="++resource++collective.transcode.js/unisubs-widgetizer.js"></script>
+<script tal:condition="view/show_subs" type="text/javascript" src="++resource++collective.transcode.js/unisubs-widgetizer.js"></script>
 <script type="text/javascript">
 // Fullscreen video width fix (unisubs/mediaelementjs conflict)
 $('.mejs-fullscreen-button button').live('click',function(){

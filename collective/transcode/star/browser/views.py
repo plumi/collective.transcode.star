@@ -35,7 +35,6 @@ class EmbedView(BrowserView):
         except:
             return []
 
-        
     
 class CallbackView(BrowserView):
     """

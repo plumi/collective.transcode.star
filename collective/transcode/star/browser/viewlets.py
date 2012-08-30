@@ -2,6 +2,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.app.layout.viewlets.common import ViewletBase
 from collective.transcode.star.interfaces import ITranscodeTool
 from zope.component import getUtility
+from plone.registry.interfaces import IRegistry
 
 
 class TranscodeViewlet(ViewletBase):
@@ -26,3 +27,7 @@ class TranscodeViewlet(ViewletBase):
         display_size_bytes = '{0:n} bytes'.format(size)
         display_size = display_size_mb or display_size_kb or display_size_bytes
         return display_size
+
+    def show_subs(self):
+        registry = getUtility(IRegistry)
+        return registry.get('collective.transcode.star.interfaces.ITranscodeSettings.subtitles', True)
