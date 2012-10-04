@@ -2,8 +2,10 @@ from Products.Five.browser import BrowserView
 from collective.transcode.star.interfaces import ICallbackView, ITranscodeTool
 from zope.interface import implements
 from zope.component import getUtility
+from plone.registry.interfaces import IRegistry
 from collective.transcode.star.crypto import encrypt, decrypt
 from base64 import b64encode, b64decode
+from AccessControl import getSecurityManager
 import logging
 
 try:
@@ -35,6 +37,9 @@ class EmbedView(BrowserView):
         except:
             return []
 
+    def canDownload(self):
+        registry = getUtility(IRegistry)
+        return registry.get('collective.transcode.star.interfaces.ITranscodeSettings.showDownload', True)
     
 class CallbackView(BrowserView):
     """

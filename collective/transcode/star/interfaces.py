@@ -57,6 +57,10 @@ class ITranscodeSettings(Interface):
                              default = True,
                             )
 
+    showDownload = schema.Bool(title = u'Show download button to embedded clips',
+                             default = True,
+                            )
+
 class ITranscodeTool(Interface):
     """TranscodeTool interface"""
 

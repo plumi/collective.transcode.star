@@ -60,6 +60,9 @@
      $('div.videobar span').css('top','-3px');
     }
 </script>
+<script type="text/javascript" tal:condition="not: view/canDownload">
+    $('div.videobar div.download').hide();
+</script>
 </body>
 </html>
 
