@@ -150,7 +150,7 @@ class TranscodeTool(BTreeContainer):
 
                 async = getUtility(IAsyncService)
                 temp_time = datetime.now(pytz.UTC) + timedelta(seconds=2)
-                job = async.queueJob(transcode_request, obj, fieldName, UID, payload, secret, address, profile, options, portal_url, begin_after=temp_time)
+                job = async.queueJobWithDelay(None, temp_time, transcode_request, obj, fieldName, UID, payload, secret, address, profile, options, portal_url)
         return
 
     def getProgress(self, jobId):
