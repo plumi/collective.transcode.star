@@ -12,6 +12,7 @@ from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.lifecycleevent.interfaces import IObjectCreatedEvent 
 from plone.registry.interfaces import IRegistry 
 from Products.CMFCore.interfaces._content import IContentish 
+import transaction
 
 log = logging.getLogger('collective.transcode')
 
@@ -46,7 +47,6 @@ def editFile(obj, event):
 def changeLayout(obj, event):
     if obj.getLayout() == 'mediaelementjs':
         obj.setLayout('file_view')
-
     
 def deleteTranscodedVideos(obj, event):
    if is_transcode_installed(obj) is False:
@@ -61,6 +61,9 @@ def deleteTranscodedVideos(obj, event):
             return
         fieldNames = [str(t.split(':')[1]) for t in types if ('%s:' % unicode(obj.portal_type)) in t]
         tt = getUtility(ITranscodeTool)
-        tt.delete(obj, fieldNames)
+        request = getattr(obj, 'REQUEST', None)
+        if 'form.submitted' in request.form:
+            tt.delete(obj, fieldNames)
+        #delete video only after confirmation for delete is clicked
    except Exception, e:
-        log.error("Could not transcode resource %s\n Exception: %s" % (obj.absolute_url(), e))
+        log.error("Could not delete resource %s\n Exception: %s" % (obj.absolute_url(), e))
