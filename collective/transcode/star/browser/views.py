@@ -6,6 +6,8 @@ from plone.registry.interfaces import IRegistry
 from collective.transcode.star.crypto import encrypt, decrypt
 from base64 import b64encode, b64decode
 from AccessControl import getSecurityManager
+from AccessControl.SecurityManagement import newSecurityManager
+from Products.CMFCore.utils import getToolByName
 import logging
 
 try:
@@ -93,6 +95,8 @@ class ServeDaemonView(BrowserView):
             if tt[uid][fieldName][profile]['status']!='pending':
                 log.error('status not pending')
                 raise
+            pm = getToolByName(self.context, 'portal_membership')
+            newSecurityManager(self.request,pm.getMemberById(obj.Creator()))
             if field.getFilename(obj).__class__ is unicode:
                 # Monkey patch the getFilename to go around plone.app.blob unicode filename bug
                 def getFilenameAsString(obj):
