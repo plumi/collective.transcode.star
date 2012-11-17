@@ -1,6 +1,18 @@
 Changelog
 ---------
 
+0.19 (2012-11-17)
+~~~~~~~~~~~~~~~~~
+
+ - add download links & share button [dimo]
+ - support variable dimensions on embed [dimo]
+ - fix embed styling [clopy]
+ - use local js files for universal subtitles widget [dimo, mgogoulos]
+ - add support for universal subtitles [dimo, clopy, mgogoulos]
+ - fix unauthorized access when transcoding private videos [clopy]
+ - delete transcoded videos when deleting a video [mgogoulos]
+ - fix plone.app.async on utility and remove deprecated patch [mgogoulos]
+ 
 0.18 (2012-07-23)
 ~~~~~~~~~~~~~~~~~
 
