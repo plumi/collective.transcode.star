@@ -96,7 +96,7 @@ class ServeDaemonView(BrowserView):
                 log.error('status not pending')
                 raise
             pm = getToolByName(self.context, 'portal_membership')
-            newSecurityManager(self.request,pm.getMemberById(obj.Creator()))
+            newSecurityManager(self.request,pm.getMemberById(self.context.getOwner().getId()))
             if field.getFilename(obj).__class__ is unicode:
                 # Monkey patch the getFilename to go around plone.app.blob unicode filename bug
                 def getFilenameAsString(obj):
