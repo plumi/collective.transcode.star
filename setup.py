@@ -5,7 +5,7 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 name = 'collective.transcode.star'
-version = '0.20'
+version = '0.21'
 
 long_description = (
     read('README.txt')
