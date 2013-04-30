@@ -20,7 +20,7 @@
        <img tal:attributes="src jpeg; width width; height height" title="No video playback capabilities" />
    </object>
 </video>
-<style tal:content="string: div.videobar{width: ${width}px}" />
+<style tal:content="string: div.videobar{width: ${width}px !important}" />
 <style>
     div.videobar {
         position: relative;
@@ -68,7 +68,7 @@
     }
     
     div.embed-box textarea {
-        height: 40px;
+        height: 50px;
         display: inline;
         width: 215px !important;
     }
@@ -93,7 +93,7 @@
         z-index: 1000;
         padding: 10px;
         width:330px !important;
-        height:40px;
+        height:60px;
         color: #fff;
     }
     
@@ -125,7 +125,41 @@
     
     div.unisubs-videoTab-anchoring {
        width: 150px !important;
-    }    
+    }
+
+    div#embed-legend {
+       float:left;
+       padding-right: 20px;
+    }
+
+   div#embed-links-container {
+       float:left;
+   }
+
+   ul#embed-links {
+       float:left;
+   }
+
+   li.embed-links {
+       display: block !important;
+   }
+
+   li.embed-links a {
+      font-size: 75%;
+   }
+
+   ul#share-links {
+      clear:both;
+   }
+
+   #embed-text-medium {
+      display:none;
+   }
+  
+   #embed-text-small {
+      display:none;
+   }
+
 </style>
 <div class="videobar">
     <div class="hi-lo" tal:condition="view/profiles/webm-high/path|nothing">
@@ -168,10 +202,22 @@
     </ul>
     
     <div id="share-box" style="display:none">
-        <div class="embed-box">
-            Embed <textarea rows="1" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view' frameborder='0' width='630' height='460'></iframe>" /></textarea>
+        <div id="embed-legend">
+            Embed
         </div>
-        <ul>
+        <div id="embed-links-container">
+            <ul id="embed-links">
+                <li class="embed-links"><a id="embed-link-small" href="#">Small</a></li>
+                <li class="embed-links"><a id="embed-link-medium" href="#">Medium</a></li>
+                <li class="embed-links"><a id="embed-link-large" href="#">Large</a></li>
+            </ul>
+        </div>
+        <div class="embed-box">
+            <textarea rows="1" id="embed-text-small" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view?width=350' frameborder='0' width='350' height='250'></iframe>" /></textarea>
+            <textarea rows="1" id="embed-text-medium" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view?width=450' frameborder='0' width='450' height='330'></iframe>" /></textarea>
+            <textarea rows="1" id="embed-text-large" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view' frameborder='0' width='630' height='460'></iframe>" /></textarea>
+        </div>
+        <ul id="share-links">
             <li><a tal:attributes="href string:http://www.twitter.com/share?url=${here/absolute_url}" target="_blank" class="twitter-share-button" data-lang="en"><img src="++resource++collective.transcode.images/twitter.png" /></a></li>
             <li><a tal:attributes="href string:http://www.facebook.com/share.php?u=${here/absolute_url}" target='_blank'><img src='++resource++collective.transcode.images/facebook.png' /> </a></li>
             <li><a class="unisubs" style="display:none" target="_blank"><img src="++resource++collective.transcode.images/unisubs.png" /></a></li>
@@ -191,6 +237,24 @@ if (isInIframe){
 var player = new MediaElementPlayer('video#main-video');
 event = Event;
 
+
+$('#embed-link-small').click( function() {
+    $('#embed-text-large').hide();
+    $('#embed-text-medium').hide();
+    $('#embed-text-small').show().select();
+});
+
+$('#embed-link-medium').click( function() {
+    $('#embed-text-large').hide();
+    $('#embed-text-medium').show().select();
+    $('#embed-text-small').hide();
+});
+
+$('#embed-link-large').click( function() {
+    $('#embed-text-large').show().select();
+    $('#embed-text-medium').hide();
+    $('#embed-text-small').hide();
+});
 
 $('div.download').mouseenter(
     function(){
