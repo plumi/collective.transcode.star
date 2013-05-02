@@ -71,6 +71,7 @@
         height: 50px;
         display: inline;
         width: 215px !important;
+        font-size: 130% !important
     }
     
     ul#dl-links{
@@ -93,13 +94,14 @@
         z-index: 1000;
         padding: 10px;
         width:330px !important;
-        height:60px;
+        height:70px;
         color: #fff;
     }
     
     div#share-box li{
         list-style: none;
         display: inline;
+        padding-right: 5px;
     }
         
     ul#dl-links li {
@@ -138,14 +140,15 @@
 
    ul#embed-links {
        float:left;
+       padding-left: 2px !important;
    }
 
    li.embed-links {
        display: block !important;
    }
 
-   li.embed-links a {
-      font-size: 75%;
+   #content div.videobar li.embed-links a, #content div.videobar li.embed-links a:hover {
+      color: white !important;
    }
 
    ul#share-links {
@@ -158,6 +161,13 @@
   
    #embed-text-small {
       display:none;
+   }
+
+   div.videobar span.embed-links-text {
+      border-left: none !important;
+      padding: 0 !important;
+      top:0 !important;
+      font-size: 90% !important;
    }
 
 </style>
@@ -202,14 +212,11 @@
     </ul>
     
     <div id="share-box" style="display:none">
-        <div id="embed-legend">
-            Embed
-        </div>
         <div id="embed-links-container">
             <ul id="embed-links">
-                <li class="embed-links"><a id="embed-link-small" href="#">Small</a></li>
-                <li class="embed-links"><a id="embed-link-medium" href="#">Medium</a></li>
-                <li class="embed-links"><a id="embed-link-large" href="#">Large</a></li>
+                <li class="embed-links"><a id="embed-link-small" href="#">Small</a><span class="embed-links-text"> (350p)</span></li>
+                <li class="embed-links"><a id="embed-link-medium" href="#">Medium</a><span class="embed-links-text"> (450p)</span></li>
+                <li class="embed-links"><a id="embed-link-large" href="#">Large</a><span class="embed-links-text"> (630p)</span></li>
             </ul>
         </div>
         <div class="embed-box">
