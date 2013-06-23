@@ -18,6 +18,7 @@ from zope.interface import implements
 from zope.component import getSiteManager
 from zope.component.interfaces import ObjectEvent
 from zope.event import notify
+from AccessControl.SecurityManagement import newSecurityManager
 
 from zope.component import queryUtility, getUtility
 from plone.i18n.normalizer.interfaces import IIDNormalizer
@@ -353,6 +354,10 @@ class TranscodeTool(BTreeContainer):
         portal = getSiteManager()
         uid_catalog = getToolByName(portal, 'uid_catalog')
         try:
+            #FIX errors introduced with Plone Hotfix 20130618
+            pm = getToolByName(portal, 'portal_membership')
+            #newSecurityManager(portal, pm.getMemberById('admin'))
+            newSecurityManager(portal, pm.getMemberById(portal.getOwner().getId()))
             obj = uid_catalog(UID=result['UID'])[0].getObject()
         except Exception, e:
             log.error("Can't get object with UID from the uid_catalog: %s" % e)

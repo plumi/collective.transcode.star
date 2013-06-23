@@ -88,6 +88,8 @@ class ServeDaemonView(BrowserView):
             key = self.request['key']
             input = decrypt(b64decode(key), tt.secret())
             (uid, fieldName, profile) = eval(input, {"__builtins__":None},{})
+            pm = getToolByName(self.context, 'portal_membership')
+            newSecurityManager(self.request,pm.getMemberById(self.context.getOwner().getId()))
             obj = self.context.uid_catalog(UID=uid)[0].getObject()
             if not fieldName:
                 fieldName = obj.getPrimaryField().getName()
@@ -95,8 +97,7 @@ class ServeDaemonView(BrowserView):
             if tt[uid][fieldName][profile]['status']!='pending':
                 log.error('status not pending')
                 raise
-            pm = getToolByName(self.context, 'portal_membership')
-            newSecurityManager(self.request,pm.getMemberById(self.context.getOwner().getId()))
+             
             if field.getFilename(obj).__class__ is unicode:
                 # Monkey patch the getFilename to go around plone.app.blob unicode filename bug
                 def getFilenameAsString(obj):
