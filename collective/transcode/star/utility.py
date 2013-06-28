@@ -22,7 +22,7 @@ from AccessControl.SecurityManagement import newSecurityManager
 
 from zope.component import queryUtility, getUtility
 from plone.i18n.normalizer.interfaces import IIDNormalizer
-from zope.app.container.btree import BTreeContainer
+from zope.container.btree import BTreeContainer
 from plone.app.async.interfaces import IAsyncService
 
 from collective.transcode.star.interfaces import ITranscodeTool, ITranscoded, ITranscodedEvent

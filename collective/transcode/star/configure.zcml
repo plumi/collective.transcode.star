@@ -26,7 +26,7 @@
     
     <subscriber 
         for=".interfaces.ITranscoded
-             zope.app.container.interfaces.IObjectRemovedEvent"
+             zope.lifecycleevent.interfaces.IObjectRemovedEvent"
         handler=".subscribers.deleteTranscodedVideos" /> 
 
 </configure>
