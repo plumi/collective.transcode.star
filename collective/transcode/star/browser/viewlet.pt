@@ -42,6 +42,7 @@
     div#share-box ul {
         float: left;
         margin: 0;
+        margin-top: -2px;
     }
     
     div.videobar a {
@@ -68,7 +69,7 @@
     }
     
     div.embed-box textarea {
-        height: 50px;
+        height: 70px;
         display: inline;
         width: 215px !important;
         font-size: 130% !important
@@ -94,7 +95,7 @@
         z-index: 1000;
         padding: 10px;
         width:330px !important;
-        height:70px;
+        height:90px !important;
         color: #fff;
     }
     
@@ -147,12 +148,21 @@
        display: block !important;
    }
 
+   li.embed-links a {
+       text-decoration: underline;
+   }
+
    #content div.videobar li.embed-links a, #content div.videobar li.embed-links a:hover {
       color: white !important;
    }
 
    ul#share-links {
       clear:both;
+      margin-top: -17px !important;
+   }
+
+   ul#share-links img {
+      width: 20px;
    }
 
    #embed-text-medium {
@@ -214,9 +224,9 @@
     <div id="share-box" style="display:none">
         <div id="embed-links-container">
             <ul id="embed-links">
-                <li class="embed-links"><a id="embed-link-small" href="#">Small</a><span class="embed-links-text"> (350p)</span></li>
-                <li class="embed-links"><a id="embed-link-medium" href="#">Medium</a><span class="embed-links-text"> (450p)</span></li>
-                <li class="embed-links"><a id="embed-link-large" href="#">Large</a><span class="embed-links-text"> (630p)</span></li>
+                <li class="embed-links"><a id="embed-link-small" href="#">Small (350p)</a></li>
+                <li class="embed-links"><a id="embed-link-medium" href="#">Medium (450p)</a></li>
+                <li class="embed-links"><a id="embed-link-large" href="#">Large (630p)</a></li>
             </ul>
         </div>
         <div class="embed-box">
@@ -227,7 +237,6 @@
         <ul id="share-links">
             <li><a tal:attributes="href string:http://www.twitter.com/share?url=${here/absolute_url}" target="_blank" class="twitter-share-button" data-lang="en"><img src="++resource++collective.transcode.images/twitter.png" /></a></li>
             <li><a tal:attributes="href string:http://www.facebook.com/share.php?u=${here/absolute_url}" target='_blank'><img src='++resource++collective.transcode.images/facebook.png' /> </a></li>
-            <li><a class="unisubs" style="display:none" target="_blank"><img src="++resource++collective.transcode.images/unisubs.png" /></a></li>
         </ul>        
     </div>
 </div>

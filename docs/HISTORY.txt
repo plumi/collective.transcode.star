@@ -1,6 +1,12 @@
 Changelog
 ---------
 
+0.22 (2013-07-23) - Unreleased
+~~~~~~~~~~~~~~~~~
+ - provide three different embed sizes [clopy]
+ - FIX security errors introduced with Plone Hotfix 20130618 [mgogoulos]
+ - Update styling on share popup [clopy]
+
 0.21 (2013-01-30)
 ~~~~~~~~~~~~~~~~~
  - fix permission issue for site managers [mgogoulos]
