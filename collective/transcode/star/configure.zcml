@@ -23,6 +23,9 @@
     <subscriber handler=".subscribers.addFile" />
     <subscriber handler=".subscribers.editFile" />
     <subscriber handler=".subscribers.changeLayout" />
+    <subscriber handler=".subscribers.addDexterityFile" />
+    <subscriber handler=".subscribers.editDexterityFile" />
+    <subscriber handler=".subscribers.changeDexterityLayout" />
     
     <subscriber 
         for=".interfaces.ITranscoded
