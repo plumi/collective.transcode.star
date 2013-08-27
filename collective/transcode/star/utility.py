@@ -84,24 +84,24 @@ class TranscodeTool(BTreeContainer):
                          % (profile, address))
                 continue
             for field in fields:
-                info = _getFieldInfo(obj, field)
+                info = self._getFieldInfo(obj, field)
                 if info is None:
                     continue
                 fieldName = info['fieldName']
-                md5Sum = info['md5sum']
+                md5sum = info['md5sum']
                 fileType = info['fileType']
                 # Check if there is already a transcode request pending
                 # for the given field and profile
                 if self.is_pending(UID, fieldName, profile, md5sum):
                     log.info(u'transcode request already pending for %s:%s:%s:%s'
-                             % (UID, fieldName, profile,md5sum))
+                             % (UID, fieldName, profile, md5sum))
                     if not force:
                         continue
                     else:
                         log.info('forcing retranscode')
                 if self.is_transcoded(UID, fieldName, profile, md5sum):
                     log.info(u'transcode request already finished for %s:%s:%s:%s'
-                             % (UID, fieldName, profile,md5sum))
+                             % (UID, fieldName, profile, md5sum))
                     if not force:
                         continue
                     else:
@@ -138,20 +138,21 @@ class TranscodeTool(BTreeContainer):
             log.info(u"adding object %s in TranscodeTool"
                      % obj.absolute_url())
         if not self[UID].get(fieldName, None):
-            self[UID][fieldName]=PersistentDict()
-            self[UID][fieldName][profile] = PersistentDict({
-                    'jobId' : None,
-                    'address' : address,
-                    'status' : 'pending',
-                    'start' : datetime.now(),
-                    'md5' : md5sum
-                    })
+            self[UID][fieldName] = PersistentDict()
+        self[UID][fieldName][profile] = PersistentDict({
+                'jobId' : None,
+                'address' : address,
+                'status' : 'pending',
+                'start' : datetime.now(),
+                'md5' : md5sum
+                })
         async = getUtility(IAsyncService)
         temp_time = datetime.now(pytz.UTC) + timedelta(seconds=2)
+        options = dict()
         job = async.queueJobWithDelay(None, temp_time,
                                       transcode_request, obj, fieldName,
                                       UID, payload, secret, address,
-                                      profile, {}, portal_url)
+                                      profile, options, portal_url)
 
     def _getFields(self, obj, fieldNames):
         # If no fieldNames have been defined as transcodable,
