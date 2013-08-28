@@ -202,7 +202,7 @@
     </div>
 
     <ul id="dl-links" style="display:none" tal:condition="view/fieldname|nothing">
-        <li><a tal:attributes="href string:${view/context/absolute_url}/at_download/${view/fieldname}">original (<tal:size tal:content="view/display_size" />)</a></li>
+        <li><a tal:attributes="href view/download_original">original (<tal:size tal:content="view/display_size" />)</a></li>
         <li><a tal:condition="view/profiles/mp4-low/address|nothing" 
                tal:attributes="href string:${view/profiles/mp4-low/address|nothing}/${view/profiles/mp4-low/path|nothing};">
                mp4 low res</a>

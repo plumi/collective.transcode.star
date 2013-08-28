@@ -1,8 +1,10 @@
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.app.layout.viewlets.common import ViewletBase
-from collective.transcode.star.interfaces import ITranscodeTool
-from zope.component import getUtility
+from plone.dexterity.interfaces import IDexterityContent
 from plone.registry.interfaces import IRegistry
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.component import getUtility
+
+from collective.transcode.star.interfaces import ITranscodeTool
 
 
 class TranscodeViewlet(ViewletBase):
@@ -19,7 +21,10 @@ class TranscodeViewlet(ViewletBase):
             pass
 
     def display_size(self):
-        size = self.context[self.fieldname].get_size()
+        if IDexterityContent.providedBy(self.context):
+            size = getattr(self.context, self.fieldname).getSize()
+        else:
+            size = self.context[self.fieldname].get_size()
         size_kb = size / 1024
         size_mb = size_kb / 1024
         display_size_mb = '{0:n} MB'.format(size_mb) if size_mb > 0 else ''
@@ -31,3 +36,9 @@ class TranscodeViewlet(ViewletBase):
     def show_subs(self):
         registry = getUtility(IRegistry)
         return registry.get('collective.transcode.star.interfaces.ITranscodeSettings.subtitles', True)
+
+    def download_original(self):
+        if IDexterityContent.providedBy(self.context):
+            return '%s/@@download/%s' % (self.context.absolute_url(), self.fieldname)
+        else:
+            return '%s/at_download/%s' % (self.context.absolute_url(), self.fieldname)

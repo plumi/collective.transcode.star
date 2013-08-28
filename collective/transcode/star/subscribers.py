@@ -37,11 +37,6 @@ def addDexterityFile(obj, event):
     editFile(obj, event)
 
 
-@adapter(IDexterityContent, IObjectModifiedEvent)
-def editDexterityFile(obj, event):
-    editFile(obj, event)
-
-
 @adapter(IContentish, IObjectModifiedEvent)
 def editFile(obj, event):
     if is_transcode_installed(obj) is False:
