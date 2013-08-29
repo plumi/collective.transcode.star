@@ -1,10 +1,15 @@
+import logging
+
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.dexterity.interfaces import IDexterityContent
 from plone.registry.interfaces import IRegistry
+from plone.uuid.interfaces import IUUID
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getUtility
 
 from collective.transcode.star.interfaces import ITranscodeTool
+
+log = logging.getLogger('collective.transcode')
 
 
 class TranscodeViewlet(ViewletBase):
@@ -12,13 +17,13 @@ class TranscodeViewlet(ViewletBase):
 
     def update(self):
         tt = getUtility(ITranscodeTool)
-        uid = self.context.UID()
+        uid = IUUID(self.context)
 
         try:
             self.fieldname = tt[uid].keys()[0]
             self.profiles = tt[uid][tt[uid].keys()[0]]
         except KeyError:
-            pass
+            log.warn('No transcode for %s', self.context.absolute_url())
 
     def display_size(self):
         if IDexterityContent.providedBy(self.context):
