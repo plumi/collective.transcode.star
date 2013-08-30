@@ -4,7 +4,6 @@ from plone.app.layout.viewlets.common import ViewletBase
 from plone.dexterity.interfaces import IDexterityContent
 from plone.registry.interfaces import IRegistry
 from plone.uuid.interfaces import IUUID
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getUtility
 
 from collective.transcode.star.interfaces import ITranscodeTool
@@ -13,8 +12,6 @@ log = logging.getLogger('collective.transcode')
 
 
 class TranscodeViewlet(ViewletBase):
-    render = ViewPageTemplateFile('viewlet.pt')
-
     def update(self):
         tt = getUtility(ITranscodeTool)
         uid = IUUID(self.context)
