@@ -311,6 +311,7 @@ $('div.videobar').mouseleave(
         } else {
             player.setSrc('${view/profiles/mp4-low/address|nothing}/${view/profiles/mp4-low/path|nothing}');
         }
+	player.load();
         player.play();
         return false
     });
@@ -325,6 +326,7 @@ $('div.videobar').mouseleave(
         } else {
             player.setSrc('${view/profiles/mp4-high/address|nothing}/${view/profiles/mp4-high/path|nothing}');
         }
+	player.load();
         player.play();
         return false
     });
