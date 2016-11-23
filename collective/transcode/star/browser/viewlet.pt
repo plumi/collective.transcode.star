@@ -230,9 +230,9 @@
             </ul>
         </div>
         <div class="embed-box">
-            <textarea rows="1" id="embed-text-small" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view?width=350' frameborder='0' width='350' height='250'></iframe>" /></textarea>
-            <textarea rows="1" id="embed-text-medium" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view?width=450' frameborder='0' width='450' height='330'></iframe>" /></textarea>
-            <textarea rows="1" id="embed-text-large" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view' frameborder='0' width='630' height='460'></iframe>" /></textarea>
+            <textarea rows="1" id="embed-text-small" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view?width=350' frameborder='0' width='350' height='250' allowfullscreen></iframe>" /></textarea>
+            <textarea rows="1" id="embed-text-medium" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view?width=450' frameborder='0' width='450' height='330' allowfullscreen></iframe>" /></textarea>
+            <textarea rows="1" id="embed-text-large" onclick="this.focus();this.select();"><span tal:replace="string:<iframe src='${here/absolute_url}/embed_view' frameborder='0' width='630' height='460' allowfullscreen></iframe>"/></textarea>
         </div>
         <ul id="share-links">
             <li><a tal:attributes="href string:http://www.twitter.com/share?url=${here/absolute_url}" target="_blank" class="twitter-share-button" data-lang="en"><img src="++resource++collective.transcode.images/twitter.png" /></a></li>
