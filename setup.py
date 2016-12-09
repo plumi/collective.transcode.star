@@ -8,7 +8,7 @@ name = 'collective.transcode.star'
 version = '0.21'
 
 long_description = (
-    read('README.txt')
+    read('README.rst')
     + '\n' +
     'Contributors\n'
     '~~~~~~~~~~~~\n'

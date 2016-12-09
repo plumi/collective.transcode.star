@@ -41,8 +41,8 @@ Requirements
 Apart from what is assembled by the buildout, the following dependencies must
 be installed manually for the transcoding scripts to work:
 
- * ffmpeg with x264 support
- * ffmpeg2theora
+* ffmpeg with x264 support
+* ffmpeg2theora
 
 In Ubuntu 10.04 you can install the above using the following commands:
 ::
@@ -57,6 +57,15 @@ In Ubuntu 10.04 you can install the above using the following commands:
 
 Installation
 ------------
+
+.. image:: https://pypip.in/v/collective.transcode.star/badge.png
+    :target: https://crate.io/packages/collective.transcode.star/
+    :alt: Latest PyPI version
+
+.. image:: https://pypip.in/d/collective.transcode.star/badge.png
+    :target: https://crate.io/packages/collective.transcode.star/
+    :alt: Number of PyPI downloads
+
 
 Plone 4.x
 ~~~~~~~~~
