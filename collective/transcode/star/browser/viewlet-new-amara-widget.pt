@@ -1,20 +1,25 @@
 <tal:video define='webm string:${view/profiles/webm-low/address|nothing}/${view/profiles/webm-low/path|nothing};
                    width view/request/width|python:630;
 		   height python:int(int(width)/1.75);'>
-<div class="amara-embed" tal:attributes='data-url webm' data-team="null"></div>
-<style tal:content="string: div.videobar{width: ${width}px !important}" />
+<div class="amara-embed" tal:attributes='data-url webm; width width; height height' data-team="null" data-initial-language='en' data-show-subtitles-default='true'></div>
+<style tal:content="string: div.videobar{width: 270px !important; float: right}" />
+<style tal:content="string: .featuredItem{height: 326px; width: ${width}px !important}" />
 <style>
+    .video.featured div.description {
+        height: 333px;
+    }
     div.videobar {
         position: relative;
-        height:29px;
-        background: url('++resource++collective.transcode.images/gradient_light.png') repeat-x scroll 0 0 #333333 !important
+        height:37px;
+        background: transparent;
+        margin-top: -37px;
     }
 
     div.videobar span {
-        padding: 7px 10px;
+        padding: 11px 10px;
         border-left: 1px solid #666666 !important;
         position: relative;
-        top: 5px;
+        top: 11px;
     }
 
     div#share-box a{
@@ -40,7 +45,7 @@
 
     div.download, div.share, div.hi-lo {
         float:right;
-        height:29px;
+        height:37px;
         z-index: 1000;
     }
 
@@ -61,7 +66,7 @@
         clear:both;
         position: absolute;
         right: 0px;
-        top: 29px;
+        top: 37px;
         background: none repeat scroll 0 0 #333333 !important;
         z-index: 1000;
         width: 181px !important;
@@ -71,7 +76,7 @@
     div#share-box{
         position: absolute;
         right: 0px;
-        top: 29px;
+        top: 37px;
         clear:both;
         background: none repeat scroll 0 0 #333333 !important;
         z-index: 1000;
@@ -163,7 +168,7 @@
    }
 
 </style>
-<div class="videobar">
+<div class="videobar" style="display:none;">
     <div class="hi-lo" tal:condition="view/profiles/webm-high/path|nothing">
         <a id="player-low" style="display:none">
             <span>View Standard Quality</span>
@@ -183,7 +188,7 @@
         </a>
     </div>
 
-    <ul id="dl-links" style="display:none" tal:condition="view/fieldname|nothing">
+    <ul id="dl-links" style="display:none; left: unset!important;" tal:condition="view/fieldname|nothing">
         <li><a tal:attributes="href view/download_original">original (<tal:size tal:content="view/display_size" />)</a></li>
         <li><a tal:condition="view/profiles/mp4-low/address|nothing"
                tal:attributes="href string:${view/profiles/mp4-low/address|nothing}/${view/profiles/mp4-low/path|nothing};">
