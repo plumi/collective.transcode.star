@@ -52,7 +52,7 @@
       for="collective.transcode.star.interfaces.ITranscoded"
       manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
       permission="zope2.View"
-      template="viewlet.pt"
+      template="viewlet-new-amara-widget.pt"
       class=".viewlets.TranscodeViewlet"
   />
 
